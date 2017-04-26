@@ -64,69 +64,69 @@ namespace BudgetTrackerTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Invalid first name. Value is null.")]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddressCreation_FirstNameNull()
         {
             BudgetTracker.Address address = new Address(firstNameNull, lastName, street, city, region, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Invalid first name. Value is empty.")]
+        [ExpectedException(typeof(ArgumentException))]
         public void Test_AddressCreation_FirstNameEmpty() {
             BudgetTracker.Address address = new Address(firstNameEmpty, lastName, street, city, region, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Invalid last name. Value is null.")]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddressCreation_LastNameNull()
         {
             BudgetTracker.Address address = new Address(firstName, lastNameNull, street, city, region, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Invalid last name. Value is empty.")]
+        [ExpectedException(typeof(ArgumentException))]
         public void Test_AddressCreation_LastNameEmpty()
         {
             BudgetTracker.Address address = new Address(firstName, lastNameEmpty, street, city, region, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Invalid street. Value is null.")]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddressCreation_StreetNull()
         {
             BudgetTracker.Address address = new Address(firstName, lastName, streetNull, city, region, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Invalid street. Value is empty.")]
+        [ExpectedException(typeof(ArgumentException))]
         public void Test_AddressCreation_StreetEmpty()
         {
             BudgetTracker.Address address = new Address(firstName, lastName, streetEmpty, city, region, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Invalid city. Value is null.")]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddressCreation_CityNull()
         {
             BudgetTracker.Address address = new Address(firstName, lastName, street, cityNull, region, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Invalid city. Value is empty.")]
+        [ExpectedException(typeof(ArgumentException))]
         public void Test_AddressCreation_CityEmpty()
         {
             BudgetTracker.Address address = new Address(firstName, lastName, street, cityEmpty, region, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Invalid region. Value is null.")]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddressCreation_RegionNull()
         {
             BudgetTracker.Address address = new Address(firstName, lastName, street, city, regionNull, postalCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Invalid region. Value is empty.")]
+        [ExpectedException(typeof(ArgumentException))]
         public void Test_AddressCreation_RegionEmpty()
         {
             BudgetTracker.Address address = new Address(firstName, lastName, street, city, regionEmpty, postalCode);
