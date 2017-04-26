@@ -8,7 +8,6 @@ namespace BudgetTracker
 {
     public class Controller
     {
-
         #region Variables
 
 

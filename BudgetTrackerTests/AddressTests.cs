@@ -9,7 +9,6 @@ namespace BudgetTrackerTests
     [TestClass]
     public class AddressTests
     {
-
         #region Variables
 
         private string street;

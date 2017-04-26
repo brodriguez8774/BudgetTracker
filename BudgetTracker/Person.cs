@@ -9,7 +9,6 @@ namespace BudgetTracker
 {
     public class Person
     {
-
         #region Variables
 
         private string firstName;

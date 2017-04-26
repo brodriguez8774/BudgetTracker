@@ -9,7 +9,6 @@ namespace BudgetTrackerTests
     [TestClass]
     public class PersonTests
     {
-
         #region Variables
 
         private string firstName;

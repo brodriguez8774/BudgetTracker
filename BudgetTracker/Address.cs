@@ -9,7 +9,6 @@ namespace BudgetTracker
 {
     public class Address
     {
-
         #region Variables
 
         private string street;
