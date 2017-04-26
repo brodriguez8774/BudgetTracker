@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BudgetTracker
 {
     public class Address
@@ -11,8 +12,6 @@ namespace BudgetTracker
 
         #region Variables
 
-        private string firstName;
-        private string lastName;
         private string street;
         private string city;
         private string region;
@@ -22,10 +21,8 @@ namespace BudgetTracker
 
         #region Constructors
 
-        public Address(string firstname, string lastName, string street, string city, string region, int postalCode)
+        public Address(string street, string city, string region, int postalCode)
         {
-            FirstName = firstname;
-            LastName = lastName;
             Street = street;
             City = city;
             Region = region;
@@ -35,38 +32,6 @@ namespace BudgetTracker
         #endregion Constructors
 
         #region Properties
-
-        public string FirstName
-        {
-            get { return firstName; }
-            set {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("firstName", "Invalid first name. Value is null.");
-                }
-                if (value.Trim() == "")
-                {
-                    throw new ArgumentException("Invalid first name. Value is empty.", "firstName");
-                }
-
-                firstName = value;
-            }
-        }
-
-        public string LastName
-        {
-            get { return lastName; }
-            set {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("lastName", "Invalid last name. Value is null.");
-                }
-                if (value.Trim() == "")
-                {
-                    throw new ArgumentException("Invalid last name. Value is empty.", "lastName");
-                }
-                lastName = value; }
-        }
 
         public string Street
         {
