@@ -35,7 +35,8 @@ namespace BudgetTracker
         public string Street
         {
             get { return street; }
-            set {
+            set
+            {
                 if (value == null)
                 {
                     throw new ArgumentNullException("street", "Invalid street. Value is null.");
@@ -44,13 +45,15 @@ namespace BudgetTracker
                 {
                     throw new ArgumentException("Invalid street. Value is empty.", "street");
                 }
-                street = value; }
+                street = value;
+            }
         }
 
         public string City
         {
             get { return city; }
-            set {
+            set
+            {
                 if (value == null)
                 {
                     throw new ArgumentNullException("city", "Invalid city. Value is null.");
@@ -59,13 +62,15 @@ namespace BudgetTracker
                 {
                     throw new ArgumentException("Invalid city. Value is empty.", "city");
                 }
-                city = value; }
+                city = value;
+            }
         }
 
         public string Region
         {
             get { return region; }
-            set {
+            set
+            {
                 if (value == null)
                 {
                     throw new ArgumentNullException("region", "Invalid street. Value is null.");
@@ -74,13 +79,15 @@ namespace BudgetTracker
                 {
                     throw new ArgumentException("Invalid street. Value is empty.", "region");
                 }
-                region = value; }
+                region = value;
+            }
         }
 
         public int PostalCode
         {
             get { return postalCode; }
-            set {
+            set
+            {
                 if (value <= 99)
                 {
                     throw new ArgumentOutOfRangeException("postalCode", "Invalid postal code. Value should be 3 or more digits.");
@@ -89,7 +96,8 @@ namespace BudgetTracker
                 {
                     throw new ArgumentOutOfRangeException("postalCode", "Invalid postal code. Value should be 10 or less digits.");
                 }
-                postalCode = value; }
+                postalCode = value;
+            }
         }
 
         #endregion Properties

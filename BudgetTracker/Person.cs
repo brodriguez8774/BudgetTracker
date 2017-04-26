@@ -76,7 +76,8 @@ namespace BudgetTracker
         public int PhoneNumber
         {
             get { return phoneNumber; }
-            set {
+            set
+            {
                 if (value.ToString().Length < 10)
                 {
                     throw new ArgumentOutOfRangeException("phoneNumber", "Invalid phone number. Value is less than 10 digits.");
