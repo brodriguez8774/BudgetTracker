@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace BudgetTrackerTests
 {
     [TestClass]
-    public class UnitTest1
+    public class PersonTests
     {
         [TestMethod]
         public void TestMethod1()

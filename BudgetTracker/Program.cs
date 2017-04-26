@@ -17,6 +17,9 @@ namespace BudgetTracker
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            // Initialize controller to run main program.
+            Controller aController = new Controller();
         }
     }
 }
