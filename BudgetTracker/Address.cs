@@ -11,15 +11,22 @@ namespace BudgetTracker
     {
         #region Variables
 
-        private string street;
-        private string city;
-        private string region;
-        private int postalCode;
+        protected string street;                  // Street name.
+        protected string city;                    // City name.
+        protected string region;                  // Region name.
+        protected int postalCode;                 // Postal code.
 
         #endregion Variables
 
         #region Constructors
 
+        /// <summary>
+        /// Base Constructor.
+        /// </summary>
+        /// <param name="street"></param>
+        /// <param name="city"></param>
+        /// <param name="region"></param>
+        /// <param name="postalCode"></param>
         public Address(string street, string city, string region, int postalCode)
         {
             Street = street;

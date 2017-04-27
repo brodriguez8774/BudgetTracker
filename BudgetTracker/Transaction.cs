@@ -4,32 +4,73 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BudgetTracker
 {
     public class Transaction
     {
         #region Variables
 
-        private string description;
-        private DateTime dateProcessed;
-        private DateTime dateDue;
-        private decimal transactionAmount;
+        protected Entity paymentFrom;             // Entity making payment.
+        protected Entity paymentTo;               // Entity being paid.
+
+        protected string description;             // Description of payment.
+        protected decimal transactionAmount;      // Amount of transaction.
+        protected DateTime dateProcessed;         // Date payment occured (if it has).
+        protected DateTime dateDue;               // Date payment is due.
 
         #endregion Variables
 
         #region Constructors
 
-        public Transaction(string description, DateTime dateProcessed, DateTime dateDue, decimal transactionAmount)
+        /// <summary>
+        /// Base constructor.
+        /// </summary>
+        /// <param name="paymentFrom"></param>
+        /// <param name="paymentTo"></param>
+        /// <param name="description"></param>
+        /// <param name="transactionAmount"></param>
+        /// <param name="dateProcessed"></param>
+        /// <param name="dateDue"></param>
+        public Transaction(Entity paymentFrom, Entity paymentTo, string description, decimal transactionAmount, DateTime dateProcessed, DateTime dateDue)
         {
+            PaymentFrom = paymentFrom;
+            PaymentTo = paymentTo;
             Description = description;
+            TransactionAmount = transactionAmount;
             DateProcessed = dateProcessed;
             DateDue = dateDue;
-            TransactionAmount = transactionAmount;
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public Entity PaymentTo
+        {
+            get { return paymentTo; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("paymentTo", "Invalid payee. Value is null.");
+                }
+                paymentTo = value;
+            }
+        }
+
+        public Entity PaymentFrom
+        {
+            get { return paymentFrom; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("paymentFrom", "Invalid payer. Value is null.");
+                }
+                paymentFrom = value;
+            }
+        }
 
         public string Description
         {
@@ -45,6 +86,19 @@ namespace BudgetTracker
                     throw new ArgumentException("Invalid description. Value is empty.");
                 }
                 description = value;
+            }
+        }
+
+        public decimal TransactionAmount
+        {
+            get { return transactionAmount; }
+            set
+            {
+                if (value == 0)
+                {
+                    throw new ArgumentException("transactionAmount", "Invalid transaction amount. Value cannot be 0.");
+                }
+                transactionAmount = value;
             }
         }
 
@@ -76,13 +130,6 @@ namespace BudgetTracker
                 }
                 dateDue = value;
             }
-        }
-
-        public decimal TransactionAmount
-        {
-            get { return transactionAmount; }
-            set
-            { transactionAmount = value; }
         }
 
         #endregion Properties

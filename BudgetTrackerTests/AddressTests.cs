@@ -27,7 +27,8 @@ namespace BudgetTrackerTests
         #endregion Variables
 
         [TestInitialize]
-        public void Initialize() {
+        public void Initialize()
+        {
             street = "Test Street";
             streetEmpty = "";
             city = "Test City";
@@ -39,18 +40,20 @@ namespace BudgetTrackerTests
             postalCodeLarge = 1000000000;
         }
 
-        #region Model Creation Tests
+        #region Class Creation Tests
 
         [TestMethod]
         public void Test_AddressCreation_Good()
         {
             Address address = new Address(street, city, region, postalCode);
-            
+
             Assert.AreEqual(street, address.Street);
             Assert.AreEqual(city, address.City);
             Assert.AreEqual(region, address.Region);
             Assert.AreEqual(postalCode, address.PostalCode);
         }
+
+        #region Class Property Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -108,7 +111,9 @@ namespace BudgetTrackerTests
             Address address = new Address(street, city, region, postalCodeLarge);
         }
 
-        #endregion Model Creation Tests
+        #endregion Class Property Tests
+
+        #endregion Class Creation Tests
 
     }
 }

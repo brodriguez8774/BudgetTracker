@@ -12,6 +12,7 @@ namespace BudgetTracker
         #region Variables
 
         protected Address address;              // Addess of entity.
+
         protected string category;              // Type of entity (person, company, etc).
         protected string firstName;             // "Main" name of entity.
         protected string lastName;              // "Optional"/additonal name of entity. Leave blank for companies, etc.
