@@ -28,9 +28,9 @@ namespace BudgetTrackerTests
         private DateTime dateDue;
         private DateTime dateDueDefault;
 
-        private DateTime dateToday = DateTime.Today;
-        private DateTime dateTomorrow = DateTime.Today.AddDays(1);
-        private DateTime dateYesterday = DateTime.Today.AddDays(-1);
+        private readonly DateTime dateToday = DateTime.Today;
+        private readonly DateTime dateTomorrow = DateTime.Today.AddDays(1);
+        private readonly DateTime dateYesterday = DateTime.Today.AddDays(-1);
 
         #endregion Variables
 
@@ -51,8 +51,18 @@ namespace BudgetTrackerTests
 
         #region Class Creation Tests
 
+        #region Constructor Tests
+
         [TestMethod]
-        public void Test_TransactionCreation_Good()
+        public void Test_TransactionCreation_BaseConstructor_Good()
+        {
+            Transaction transaction = new Transaction(paymentFrom, paymentTo);
+            Assert.AreEqual(paymentFrom, transaction.PaymentFrom);
+            Assert.AreEqual(paymentTo, transaction.PaymentTo);
+        }
+
+        [TestMethod]
+        public void Test_TransactionCreation_FullTransactionConstructor_Good()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmount, dateProcessed, dateDue);
             Assert.AreEqual(paymentFrom, transaction.PaymentFrom);
@@ -62,6 +72,8 @@ namespace BudgetTrackerTests
             Assert.AreEqual(dateDue, transaction.DateDue);
             Assert.AreEqual(transactionAmount, transaction.TransactionAmount);
         }
+
+        #endregion Constructor Tests
 
         #region Class Property Tests
 

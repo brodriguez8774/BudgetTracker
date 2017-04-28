@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace BudgetTracker
 {
-    public class Transaction
+    /// <summary>
+    /// Generic transaction.
+    /// Can be used as is for a single basic transaction, or extended for more complex transaction types.
+    /// </summary>
+    public class Transaction : ITransaction
     {
         #region Variables
 
@@ -25,6 +29,17 @@ namespace BudgetTracker
 
         /// <summary>
         /// Base constructor.
+        /// </summary>
+        /// <param name="paymentFrom"></param>
+        /// <param name="paymentTo"></param>
+        public Transaction(Entity paymentFrom, Entity paymentTo)
+        {
+            PaymentFrom = paymentFrom;
+            PaymentTo = paymentTo;
+        }
+
+        /// <summary>
+        /// Full constructor for single transaction.
         /// </summary>
         /// <param name="paymentFrom"></param>
         /// <param name="paymentTo"></param>
