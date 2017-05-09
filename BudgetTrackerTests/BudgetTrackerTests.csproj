@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AddressTests.cs" />
     <Compile Include="ControllerTests.cs" />
+    <Compile Include="DataStructures\GenericLinkedListTests.cs" />
     <Compile Include="EntityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepeatingTransactionTests.cs" />

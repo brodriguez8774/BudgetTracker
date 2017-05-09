@@ -56,10 +56,12 @@ namespace BudgetTrackerTests
         [TestMethod]
         public void Test_TransactionCreation_BaseConstructor_Good()
         {
-            Transaction transaction = new Transaction(paymentFrom, paymentTo);
+            Transaction transaction = new Transaction(paymentFrom, paymentTo, dateDue);
             Assert.AreEqual(paymentFrom, transaction.PaymentFrom);
             Assert.AreEqual(paymentTo, transaction.PaymentTo);
+            Assert.AreEqual(dateDue, transaction.DateDue);
         }
+
 
         [TestMethod]
         public void Test_TransactionCreation_FullTransactionConstructor_Good()
@@ -75,6 +77,8 @@ namespace BudgetTrackerTests
 
         #endregion Constructor Tests
 
+
+
         #region Class Property Tests
 
         [TestMethod]
@@ -84,12 +88,14 @@ namespace BudgetTrackerTests
             Transaction transaction = new Transaction(paymentFromNull, paymentTo, description, transactionAmount, dateProcessed, dateDue);
         }
 
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_TransactionCreation_PaymentToNull()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentToNull, description, transactionAmount, dateProcessed, dateDue);
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -98,12 +104,14 @@ namespace BudgetTrackerTests
             Transaction transaction = new Transaction(paymentFrom, paymentTo, descriptionNull, transactionAmount, dateProcessed, dateDue);
         }
 
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_TransactionCreation_DescriptionEmpty()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, descriptionEmpty, transactionAmount, dateProcessed, dateDue);
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -112,6 +120,7 @@ namespace BudgetTrackerTests
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmountZero, dateProcessed, dateDue);
         }
 
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_TransactionCreation_DateProcessedDefault()
@@ -119,12 +128,14 @@ namespace BudgetTrackerTests
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmount, dateProcessedDefault, dateDue);
         }
 
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_TransactionCreation_DateProcessedInFuture()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmount, dateProcessedFuture, dateDue);
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]

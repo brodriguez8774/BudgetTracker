@@ -25,6 +25,8 @@ namespace BudgetTracker
 
         #endregion Variables
 
+
+
         #region Constructors
 
         /// <summary>
@@ -32,11 +34,13 @@ namespace BudgetTracker
         /// </summary>
         /// <param name="paymentFrom"></param>
         /// <param name="paymentTo"></param>
-        public Transaction(Entity paymentFrom, Entity paymentTo)
+        public Transaction(Entity paymentFrom, Entity paymentTo, DateTime dateDue)
         {
             PaymentFrom = paymentFrom;
             PaymentTo = paymentTo;
+            DateDue = dateDue;
         }
+
 
         /// <summary>
         /// Full constructor for single transaction.
@@ -59,21 +63,13 @@ namespace BudgetTracker
 
         #endregion Constructors
 
+
+
         #region Properties
 
-        public Entity PaymentTo
-        {
-            get { return paymentTo; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("paymentTo", "Invalid payee. Value is null.");
-                }
-                paymentTo = value;
-            }
-        }
-
+        /// <summary>
+        /// Entity making payment.
+        /// </summary>
         public Entity PaymentFrom
         {
             get { return paymentFrom; }
@@ -87,6 +83,27 @@ namespace BudgetTracker
             }
         }
 
+
+        /// <summary>
+        /// Entity being paid.
+        /// </summary>
+        public Entity PaymentTo
+        {
+            get { return paymentTo; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("paymentTo", "Invalid payee. Value is null.");
+                }
+                paymentTo = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Description of payment.
+        /// </summary>
         public string Description
         {
             get { return description; }
@@ -104,6 +121,10 @@ namespace BudgetTracker
             }
         }
 
+
+        /// <summary>
+        /// Amount of transaction.
+        /// </summary>
         public decimal TransactionAmount
         {
             get { return transactionAmount; }
@@ -117,6 +138,10 @@ namespace BudgetTracker
             }
         }
 
+
+        /// <summary>
+        /// Date payment occured (if it has).
+        /// </summary>
         public DateTime DateProcessed
         {
             get { return dateProcessed; }
@@ -134,6 +159,10 @@ namespace BudgetTracker
             }
         }
 
+
+        /// <summary>
+        /// Date payment is due.
+        /// </summary>
         public DateTime DateDue
         {
             get { return dateDue; }
@@ -148,6 +177,8 @@ namespace BudgetTracker
         }
 
         #endregion Properties
+
+
 
         #region Methods
 

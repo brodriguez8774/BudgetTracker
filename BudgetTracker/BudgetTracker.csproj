@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="DataStructures\GenericNode.cs" />
+    <Compile Include="DataStructures\GenericLinkedList.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
