@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BudgetTracker.Models
 {
+    /// <summary>
+    /// Standard Address Model.
+    /// </summary>
     public class Address
     {
         #region Variables

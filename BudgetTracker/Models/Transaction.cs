@@ -180,13 +180,5 @@ namespace BudgetTracker.Models
 
         #endregion Properties
 
-
-
-        #region Methods
-
-
-
-        #endregion Methods
-
     }
 }

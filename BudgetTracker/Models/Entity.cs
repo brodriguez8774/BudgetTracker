@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BudgetTracker.Models
 {
+    /// <summary>
+    /// An entity such as a person, business, company, etc which may handle transactions.
+    /// </summary>
     public class Entity
     {
         #region Variables

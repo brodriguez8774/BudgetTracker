@@ -10,7 +10,7 @@ using BudgetTracker.DataStructures;
 namespace BudgetTracker.Models
 {
     /// <summary>
-    /// A transaction with a start date, that either repeats indefinitely or until a specified end date.
+    /// A recurring transaction with a start date, that either repeats indefinitely or until a specified end date.
     /// </summary>
     public class RepeatingTransaction : Transaction
     {
