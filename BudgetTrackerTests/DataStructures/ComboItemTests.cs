@@ -12,8 +12,8 @@ namespace BudgetTrackerTests.DataStructures
         #region Variables
 
         private ulong id;
-        private string text;
-        private string textNull;
+        private string itemValue;
+        private string itemValueNull;
 
         #endregion Variables
 
@@ -21,7 +21,7 @@ namespace BudgetTrackerTests.DataStructures
         public void Initialize()
         {
             id = 0;
-            text = "Test Text";
+            itemValue = "Test Text";
         }
 
         #region Class Creation Tests
@@ -29,9 +29,9 @@ namespace BudgetTrackerTests.DataStructures
         [TestMethod]
         public void Test_ComboItemCreation_Good()
         {
-            ComboItem comboItem = new ComboItem(id, text);
+            ComboItem comboItem = new ComboItem(id, itemValue);
             Assert.AreEqual(id, comboItem.ID);
-            Assert.AreEqual(text, comboItem.Text);
+            Assert.AreEqual(itemValue, comboItem.ItemValue);
         }
 
         #region Class Property Tests
@@ -40,7 +40,7 @@ namespace BudgetTrackerTests.DataStructures
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_ComboItemCreation_TextNull()
         {
-            ComboItem comboItem = new ComboItem(id, textNull);
+            ComboItem comboItem = new ComboItem(id, itemValueNull);
         }
 
         #endregion

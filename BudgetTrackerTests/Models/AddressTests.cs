@@ -96,7 +96,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void Test_AddressCreation_RegionEmpty()
         {
             Address address = new Address(street, city, regionEmpty, postalCode);

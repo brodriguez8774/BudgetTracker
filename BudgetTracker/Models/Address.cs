@@ -98,6 +98,10 @@ namespace BudgetTracker.Models
                 {
                     throw new ArgumentNullException("region", "Invalid region. Value is null.");
                 }
+                if (value.Trim() == "")
+                {
+                    throw new ArgumentException("Invalid region. Value is empty.", "region");
+                }
                 region = value;
             }
         }

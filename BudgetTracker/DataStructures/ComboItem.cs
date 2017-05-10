@@ -49,10 +49,6 @@ namespace BudgetTracker.DataStructures
                 {
                     throw new ArgumentNullException("itemValue", "Invalid itemValue. Value is null.");
                 }
-                if (value.ToString().Trim() == "")
-                {
-                    throw new ArgumentException("Invalid itemValue. Value is empty.", "itemValue");
-                }
                 itemValue = value;
             }
         }
