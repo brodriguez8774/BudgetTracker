@@ -14,9 +14,10 @@ namespace BudgetTracker.Models
     {
         #region Variables
 
+        protected Region region;                  // Region name.
+
         protected string street;                  // Street name.
         protected string city;                    // City name.
-        protected string region;                  // Region name.
         protected int postalCode;                 // Postal code.
 
         #endregion Variables
@@ -32,7 +33,7 @@ namespace BudgetTracker.Models
         /// <param name="city"></param>
         /// <param name="region"></param>
         /// <param name="postalCode"></param>
-        public Address(string street, string city, string region, int postalCode)
+        public Address(string street, string city, Region region, int postalCode)
         {
             Street = street;
             City = city;
@@ -89,18 +90,14 @@ namespace BudgetTracker.Models
         /// <summary>
         /// Region name.
         /// </summary>
-        public string Region
+        public Region Region
         {
             get { return region; }
             set
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("region", "Invalid street. Value is null.");
-                }
-                if (value.Trim() == "")
-                {
-                    throw new ArgumentException("Invalid street. Value is empty.", "region");
+                    throw new ArgumentNullException("region", "Invalid region. Value is null.");
                 }
                 region = value;
             }

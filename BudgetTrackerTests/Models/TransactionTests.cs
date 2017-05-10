@@ -16,6 +16,7 @@ namespace BudgetTrackerTests.Models
         private Entity paymentFromNull;
         private Entity paymentTo;
         private Entity paymentToNull;
+        private Region region;
 
         private string description;
         private string descriptionNull;
@@ -37,7 +38,8 @@ namespace BudgetTrackerTests.Models
         [TestInitialize]
         public void Initialize()
         {
-            address = new Address("Test Street", "Test City", "Test Region", 555555);
+            region = new Region(0, "Test Region");
+            address = new Address("Test Street", "Test City", region, 555555);
             paymentFrom = new Entity("Test Person", "Test First Name", "Test Last Name", address, 5555555555);
             paymentTo = new Entity("Test Company", "Test Name", address, 5555555555);
             description = "Test Description";

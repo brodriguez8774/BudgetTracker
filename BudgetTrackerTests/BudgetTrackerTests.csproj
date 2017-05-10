@@ -54,6 +54,7 @@
     <Compile Include="ControllerTests.cs" />
     <Compile Include="DataStructures\GenericLinkedListTests.cs" />
     <Compile Include="Models\EntityTests.cs" />
+    <Compile Include="Models\RegionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RepeatingTransactionTests.cs" />
     <Compile Include="Models\TransactionTests.cs" />
