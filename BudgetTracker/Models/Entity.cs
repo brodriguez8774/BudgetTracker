@@ -20,6 +20,8 @@ namespace BudgetTracker.Models
 
         #endregion Variables
 
+
+
         #region Constructors
 
         /// <summary>
@@ -57,8 +59,13 @@ namespace BudgetTracker.Models
 
         #endregion Constructors
 
+
+
         #region Properties
 
+        /// <summary>
+        /// Type of entity (person, company, etc).
+        /// </summary>
         public string Category
         {
             get { return category; }
@@ -76,6 +83,9 @@ namespace BudgetTracker.Models
             }
         }
 
+        /// <summary>
+        /// "Main" name of entity.
+        /// </summary>
         public string FirstName
         {
             get { return firstName; }
@@ -94,6 +104,9 @@ namespace BudgetTracker.Models
             }
         }
 
+        /// <summary>
+        /// "Optional"/additonal name of entity. Leave blank for companies, etc.
+        /// </summary>
         public string LastName
         {
             get { return lastName; }
@@ -111,6 +124,9 @@ namespace BudgetTracker.Models
             }
         }
 
+        /// <summary>
+        /// Addess of entity.
+        /// </summary>
         public Address Address
         {
             get { return address; }
@@ -124,6 +140,9 @@ namespace BudgetTracker.Models
             }
         }
 
+        /// <summary>
+        /// Contact phone number.
+        /// </summary>
         public long PhoneNumber
         {
             get { return phoneNumber; }
@@ -142,12 +161,6 @@ namespace BudgetTracker.Models
         }
 
         #endregion Properties
-
-        #region Methods
-
-
-
-        #endregion Methods
 
     }
 }

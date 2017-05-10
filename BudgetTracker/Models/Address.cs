@@ -18,6 +18,8 @@ namespace BudgetTracker.Models
 
         #endregion Variables
 
+
+
         #region Constructors
 
         /// <summary>
@@ -37,8 +39,13 @@ namespace BudgetTracker.Models
 
         #endregion Constructors
 
+
+
         #region Properties
 
+        /// <summary>
+        /// Street name.
+        /// </summary>
         public string Street
         {
             get { return street; }
@@ -56,6 +63,9 @@ namespace BudgetTracker.Models
             }
         }
 
+        /// <summary>
+        /// City name.
+        /// </summary>
         public string City
         {
             get { return city; }
@@ -73,6 +83,9 @@ namespace BudgetTracker.Models
             }
         }
 
+        /// <summary>
+        /// Region name.
+        /// </summary>
         public string Region
         {
             get { return region; }
@@ -90,6 +103,9 @@ namespace BudgetTracker.Models
             }
         }
 
+        /// <summary>
+        /// Postal code.
+        /// </summary>
         public int PostalCode
         {
             get { return postalCode; }
@@ -108,12 +124,6 @@ namespace BudgetTracker.Models
         }
 
         #endregion Properties
-
-        #region Methods
-
-
-
-        #endregion Methods
 
     }
 }
