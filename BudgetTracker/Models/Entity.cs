@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace BudgetTracker
+namespace BudgetTracker.Models
 {
     public class Entity
     {

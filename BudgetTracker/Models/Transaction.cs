@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using BudgetTracker.Interfaces;
 
-namespace BudgetTracker
+
+namespace BudgetTracker.Models
 {
     /// <summary>
     /// Generic transaction.

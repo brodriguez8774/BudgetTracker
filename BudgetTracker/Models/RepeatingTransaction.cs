@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using BudgetTracker.DataStructures;
 
 
-namespace BudgetTracker
+namespace BudgetTracker.Models
 {
     /// <summary>
     /// A transaction with a start date, that either repeats indefinitely or until a specified end date.

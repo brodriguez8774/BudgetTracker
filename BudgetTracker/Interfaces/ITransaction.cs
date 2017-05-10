@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgetTracker
+using BudgetTracker.Models;
+
+
+namespace BudgetTracker.Interfaces
 {
     /// <summary>
     /// Requirements for any given type of transaction.

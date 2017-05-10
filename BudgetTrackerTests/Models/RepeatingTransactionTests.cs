@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using BudgetTracker;
+using BudgetTracker.Models;
 
 
-namespace BudgetTrackerTests
+namespace BudgetTrackerTests.Models
 {
     [TestClass]
     public class RepeatingTransactionTests
