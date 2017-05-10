@@ -13,7 +13,6 @@ namespace BudgetTrackerTests.Models
 
         private Address address;
         private Address addressNull;
-        private Region region;
 
         private string category;
         private string categoryNull;
@@ -34,8 +33,7 @@ namespace BudgetTrackerTests.Models
         [TestInitialize]
         public void Initialize()
         {
-            region = new Region(0, "Test Region");
-            address = new Address("Test Street", "Test City", region, 12345);
+            address = new Address("Test Street", "Test City", "Test Region", 12345);
 
             category = "Test Category";
             categoryEmpty = "";

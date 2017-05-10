@@ -14,10 +14,9 @@ namespace BudgetTracker.Models
     {
         #region Variables
 
-        protected Region region;                  // Region name.
-
         protected string street;                  // Street name.
         protected string city;                    // City name.
+        protected string region;                  // Region name.
         protected int postalCode;                 // Postal code.
 
         #endregion Variables
@@ -33,7 +32,7 @@ namespace BudgetTracker.Models
         /// <param name="city"></param>
         /// <param name="region"></param>
         /// <param name="postalCode"></param>
-        public Address(string street, string city, Region region, int postalCode)
+        public Address(string street, string city, string region, int postalCode)
         {
             Street = street;
             City = city;
@@ -90,7 +89,7 @@ namespace BudgetTracker.Models
         /// <summary>
         /// Region name.
         /// </summary>
-        public Region Region
+        public string Region
         {
             get { return region; }
             set
