@@ -32,7 +32,7 @@ namespace BudgetTracker.DataStructures
         #region Properties
 
         /// <summary>
-        /// 
+        /// Id for comboItem
         /// </summary>
         public ulong ID
         {
@@ -40,6 +40,9 @@ namespace BudgetTracker.DataStructures
             set { id = value; }
         }
 
+        /// <summary>
+        /// Value for comboItem to hold.
+        /// </summary>
         public IComparable ItemValue
         {
             get { return itemValue; }
@@ -59,6 +62,11 @@ namespace BudgetTracker.DataStructures
 
         #region Methods
 
+        /// <summary>
+        /// Override for default ToString.
+        /// Returns itemValue as string.
+        /// </summary>
+        /// <returns>ItemValue as string.</returns>
         public override string ToString()
         {
             return this.itemValue.ToString();

@@ -38,7 +38,7 @@ namespace BudgetTrackerTests.DataStructures
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_ComboItemCreation_TextNull()
+        public void Test_ComboItemCreation_ItemValueNull()
         {
             ComboItem comboItem = new ComboItem(id, itemValueNull);
         }

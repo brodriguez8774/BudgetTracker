@@ -32,6 +32,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.transactorsTab = new System.Windows.Forms.TabPage();
             this.transactorGroupBox = new System.Windows.Forms.GroupBox();
+            this.cancelTransactorButton = new System.Windows.Forms.Button();
+            this.saveTransactorButton = new System.Windows.Forms.Button();
+            this.categoryLabel = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.phoneTextBox3 = new System.Windows.Forms.TextBox();
             this.phoneLabel3 = new System.Windows.Forms.Label();
@@ -93,6 +96,9 @@
             // 
             // transactorGroupBox
             // 
+            this.transactorGroupBox.Controls.Add(this.cancelTransactorButton);
+            this.transactorGroupBox.Controls.Add(this.saveTransactorButton);
+            this.transactorGroupBox.Controls.Add(this.categoryLabel);
             this.transactorGroupBox.Controls.Add(this.categoryComboBox);
             this.transactorGroupBox.Controls.Add(this.phoneTextBox3);
             this.transactorGroupBox.Controls.Add(this.phoneLabel3);
@@ -112,18 +118,47 @@
             this.transactorGroupBox.Controls.Add(this.lastNameTextBox);
             this.transactorGroupBox.Controls.Add(this.firstNameLabel);
             this.transactorGroupBox.Controls.Add(this.firstNameTextBox);
-            this.transactorGroupBox.Location = new System.Drawing.Point(340, 41);
+            this.transactorGroupBox.Location = new System.Drawing.Point(388, 41);
             this.transactorGroupBox.Name = "transactorGroupBox";
-            this.transactorGroupBox.Size = new System.Drawing.Size(520, 382);
+            this.transactorGroupBox.Size = new System.Drawing.Size(467, 382);
             this.transactorGroupBox.TabIndex = 11;
             this.transactorGroupBox.TabStop = false;
             this.transactorGroupBox.Text = "transactorGroupBox";
+            // 
+            // cancelTransactorButton
+            // 
+            this.cancelTransactorButton.Location = new System.Drawing.Point(365, 341);
+            this.cancelTransactorButton.Name = "cancelTransactorButton";
+            this.cancelTransactorButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelTransactorButton.TabIndex = 21;
+            this.cancelTransactorButton.Text = "Cancel";
+            this.cancelTransactorButton.UseVisualStyleBackColor = true;
+            this.cancelTransactorButton.Click += new System.EventHandler(this.cancelTransactorButton_Click);
+            // 
+            // saveTransactorButton
+            // 
+            this.saveTransactorButton.Location = new System.Drawing.Point(255, 341);
+            this.saveTransactorButton.Name = "saveTransactorButton";
+            this.saveTransactorButton.Size = new System.Drawing.Size(75, 23);
+            this.saveTransactorButton.TabIndex = 20;
+            this.saveTransactorButton.Text = "Save";
+            this.saveTransactorButton.UseVisualStyleBackColor = true;
+            this.saveTransactorButton.Click += new System.EventHandler(this.saveTransactorButton_Click);
+            // 
+            // categoryLabel
+            // 
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Location = new System.Drawing.Point(18, 24);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(52, 13);
+            this.categoryLabel.TabIndex = 19;
+            this.categoryLabel.Text = "Category:";
             // 
             // categoryComboBox
             // 
             this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(21, 33);
+            this.categoryComboBox.Location = new System.Drawing.Point(21, 40);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(121, 21);
             this.categoryComboBox.TabIndex = 18;
@@ -131,167 +166,149 @@
             // 
             // phoneTextBox3
             // 
-            this.phoneTextBox3.Location = new System.Drawing.Point(255, 186);
+            this.phoneTextBox3.Location = new System.Drawing.Point(255, 200);
             this.phoneTextBox3.Name = "phoneTextBox3";
             this.phoneTextBox3.Size = new System.Drawing.Size(66, 20);
             this.phoneTextBox3.TabIndex = 17;
-            this.phoneTextBox3.Visible = false;
             // 
             // phoneLabel3
             // 
             this.phoneLabel3.AutoSize = true;
-            this.phoneLabel3.Location = new System.Drawing.Point(239, 189);
+            this.phoneLabel3.Location = new System.Drawing.Point(239, 203);
             this.phoneLabel3.Name = "phoneLabel3";
             this.phoneLabel3.Size = new System.Drawing.Size(10, 13);
             this.phoneLabel3.TabIndex = 16;
             this.phoneLabel3.Text = "-";
-            this.phoneLabel3.Visible = false;
             // 
             // phoneTextBox2
             // 
-            this.phoneTextBox2.Location = new System.Drawing.Point(183, 186);
+            this.phoneTextBox2.Location = new System.Drawing.Point(183, 200);
             this.phoneTextBox2.Name = "phoneTextBox2";
             this.phoneTextBox2.Size = new System.Drawing.Size(50, 20);
             this.phoneTextBox2.TabIndex = 15;
-            this.phoneTextBox2.Visible = false;
             // 
             // phoneLabel2
             // 
             this.phoneLabel2.AutoSize = true;
-            this.phoneLabel2.Location = new System.Drawing.Point(167, 189);
+            this.phoneLabel2.Location = new System.Drawing.Point(167, 203);
             this.phoneLabel2.Name = "phoneLabel2";
             this.phoneLabel2.Size = new System.Drawing.Size(10, 13);
             this.phoneLabel2.TabIndex = 14;
             this.phoneLabel2.Text = "-";
-            this.phoneLabel2.Visible = false;
             // 
             // phoneTextBox1
             // 
-            this.phoneTextBox1.Location = new System.Drawing.Point(111, 186);
+            this.phoneTextBox1.Location = new System.Drawing.Point(111, 200);
             this.phoneTextBox1.Name = "phoneTextBox1";
             this.phoneTextBox1.Size = new System.Drawing.Size(50, 20);
             this.phoneTextBox1.TabIndex = 13;
-            this.phoneTextBox1.Visible = false;
             // 
             // phoneLabel1
             // 
             this.phoneLabel1.AutoSize = true;
-            this.phoneLabel1.Location = new System.Drawing.Point(18, 189);
+            this.phoneLabel1.Location = new System.Drawing.Point(18, 203);
             this.phoneLabel1.Name = "phoneLabel1";
             this.phoneLabel1.Size = new System.Drawing.Size(81, 13);
             this.phoneLabel1.TabIndex = 12;
             this.phoneLabel1.Text = "Phone Number:";
-            this.phoneLabel1.Visible = false;
             // 
             // postalCodeTextBox
             // 
-            this.postalCodeTextBox.Location = new System.Drawing.Point(350, 261);
+            this.postalCodeTextBox.Location = new System.Drawing.Point(362, 274);
             this.postalCodeTextBox.Name = "postalCodeTextBox";
-            this.postalCodeTextBox.Size = new System.Drawing.Size(90, 20);
+            this.postalCodeTextBox.Size = new System.Drawing.Size(78, 20);
             this.postalCodeTextBox.TabIndex = 11;
-            this.postalCodeTextBox.Visible = false;
             // 
             // postalCodeLabel
             // 
             this.postalCodeLabel.AutoSize = true;
-            this.postalCodeLabel.Location = new System.Drawing.Point(319, 265);
+            this.postalCodeLabel.Location = new System.Drawing.Point(331, 278);
             this.postalCodeLabel.Name = "postalCodeLabel";
             this.postalCodeLabel.Size = new System.Drawing.Size(25, 13);
             this.postalCodeLabel.TabIndex = 10;
             this.postalCodeLabel.Text = "Zip:";
-            this.postalCodeLabel.Visible = false;
             // 
             // regionComboBox
             // 
             this.regionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.regionComboBox.FormattingEnabled = true;
-            this.regionComboBox.Location = new System.Drawing.Point(264, 258);
+            this.regionComboBox.Location = new System.Drawing.Point(270, 276);
             this.regionComboBox.Name = "regionComboBox";
             this.regionComboBox.Size = new System.Drawing.Size(50, 21);
             this.regionComboBox.TabIndex = 9;
-            this.regionComboBox.Visible = false;
             // 
             // regionLabel
             // 
             this.regionLabel.AutoSize = true;
-            this.regionLabel.Location = new System.Drawing.Point(223, 264);
+            this.regionLabel.Location = new System.Drawing.Point(229, 279);
             this.regionLabel.Name = "regionLabel";
             this.regionLabel.Size = new System.Drawing.Size(35, 13);
             this.regionLabel.TabIndex = 8;
             this.regionLabel.Text = "State:";
-            this.regionLabel.Visible = false;
             // 
             // cityTextBox
             // 
-            this.cityTextBox.Location = new System.Drawing.Point(84, 262);
+            this.cityTextBox.Location = new System.Drawing.Point(84, 276);
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(133, 20);
             this.cityTextBox.TabIndex = 7;
-            this.cityTextBox.Visible = false;
             // 
             // cityLabel
             // 
             this.cityLabel.AutoSize = true;
-            this.cityLabel.Location = new System.Drawing.Point(18, 264);
+            this.cityLabel.Location = new System.Drawing.Point(18, 278);
             this.cityLabel.Name = "cityLabel";
             this.cityLabel.Size = new System.Drawing.Size(27, 13);
             this.cityLabel.TabIndex = 6;
             this.cityLabel.Text = "City:";
-            this.cityLabel.Visible = false;
             // 
             // addressTextBox
             // 
-            this.addressTextBox.Location = new System.Drawing.Point(84, 226);
+            this.addressTextBox.Location = new System.Drawing.Point(84, 240);
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(356, 20);
             this.addressTextBox.TabIndex = 5;
-            this.addressTextBox.Visible = false;
             // 
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(18, 229);
+            this.addressLabel.Location = new System.Drawing.Point(18, 243);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(48, 13);
             this.addressLabel.TabIndex = 4;
             this.addressLabel.Text = "Address:";
-            this.addressLabel.Visible = false;
             // 
             // lastNameLabel
             // 
             this.lastNameLabel.AutoSize = true;
-            this.lastNameLabel.Location = new System.Drawing.Point(18, 125);
+            this.lastNameLabel.Location = new System.Drawing.Point(18, 139);
             this.lastNameLabel.Name = "lastNameLabel";
             this.lastNameLabel.Size = new System.Drawing.Size(61, 13);
             this.lastNameLabel.TabIndex = 3;
             this.lastNameLabel.Text = "Last Name:";
-            this.lastNameLabel.Visible = false;
             // 
             // lastNameTextBox
             // 
-            this.lastNameTextBox.Location = new System.Drawing.Point(21, 141);
+            this.lastNameTextBox.Location = new System.Drawing.Point(21, 155);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(300, 20);
             this.lastNameTextBox.TabIndex = 2;
-            this.lastNameTextBox.Visible = false;
             // 
             // firstNameLabel
             // 
             this.firstNameLabel.AutoSize = true;
-            this.firstNameLabel.Location = new System.Drawing.Point(18, 72);
+            this.firstNameLabel.Location = new System.Drawing.Point(18, 86);
             this.firstNameLabel.Name = "firstNameLabel";
             this.firstNameLabel.Size = new System.Drawing.Size(60, 13);
             this.firstNameLabel.TabIndex = 1;
             this.firstNameLabel.Text = "First Name:";
-            this.firstNameLabel.Visible = false;
             // 
             // firstNameTextBox
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(21, 88);
+            this.firstNameTextBox.Location = new System.Drawing.Point(21, 102);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(300, 20);
             this.firstNameTextBox.TabIndex = 0;
-            this.firstNameTextBox.Visible = false;
             // 
             // transactorListBox
             // 
@@ -418,6 +435,9 @@
         private System.Windows.Forms.TextBox phoneTextBox1;
         private System.Windows.Forms.Label phoneLabel1;
         private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.Button cancelTransactorButton;
+        private System.Windows.Forms.Button saveTransactorButton;
+        private System.Windows.Forms.Label categoryLabel;
 
     }
 }
