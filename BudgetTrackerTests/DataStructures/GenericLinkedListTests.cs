@@ -40,7 +40,7 @@ namespace BudgetTrackerTests.DataStructures
         #region Constructor Tests
 
         [TestMethod]
-        public void Test_LinkedList_Constructor()
+        public void Test_GenericLinkedList_Constructor()
         {
             linkedList = new GenericLinkedList<int>();
             Assert.IsNotNull(linkedList);
@@ -55,7 +55,7 @@ namespace BudgetTrackerTests.DataStructures
 
         #region Method Tests
 
-        public void Test_LinkedList_Method_CompareTo()
+        public void Test_GenericLinkedList_Method_CompareTo()
         {
             GenericLinkedList<string> linkedList1 = new GenericLinkedList<string>();
             GenericLinkedList<string> linkedList2 = new GenericLinkedList<string>();
@@ -76,7 +76,7 @@ namespace BudgetTrackerTests.DataStructures
         #region Add Method
 
         [TestMethod]
-        public void Test_LinkedList_Method_Add_SuccessOnlyFirstIndex()
+        public void Test_GenericLinkedList_Method_Add_SuccessOnlyFirstIndex()
         {
             linkedList = new GenericLinkedList<int>();
             testBool = linkedList.Add(zeroInt, 0);
@@ -101,7 +101,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Add_SuccessOnlyLastIndex()
+        public void Test_GenericLinkedList_Method_Add_SuccessOnlyLastIndex()
         {
             linkedList = new GenericLinkedList<int>();
             testBool = linkedList.Add(zeroInt, 0);
@@ -126,7 +126,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Add_BadIndexEmptyList()
+        public void Test_GenericLinkedList_Method_Add_BadIndexEmptyList()
         {
             linkedList = new GenericLinkedList<int>();
             testBool = linkedList.Add(zeroInt, 1);
@@ -141,7 +141,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Add_BadIndex()
+        public void Test_GenericLinkedList_Method_Add_BadIndex()
         {
             linkedList = new GenericLinkedList<int>();
             testBool = linkedList.Add(zeroInt, 0);
@@ -162,7 +162,7 @@ namespace BudgetTrackerTests.DataStructures
         #region Retrieve Method
 
         [TestMethod]
-        public void Test_LinkedList_Method_Retrieve_Success()
+        public void Test_GenericLinkedList_Method_Retrieve_Success()
         {
             linkedList = new GenericLinkedList<int>();
             linkedList.PushLast(zeroInt);
@@ -178,7 +178,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Retrieve_IndexTooLow()
+        public void Test_GenericLinkedList_Method_Retrieve_IndexTooLow()
         {
             linkedList = new GenericLinkedList<int>();
             node = linkedList.Retrieve(0);
@@ -190,7 +190,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Retrieve_IndexTooHigh()
+        public void Test_GenericLinkedList_Method_Retrieve_IndexTooHigh()
         {
             linkedList = new GenericLinkedList<int>();
             node = linkedList.Retrieve(0);
@@ -209,7 +209,7 @@ namespace BudgetTrackerTests.DataStructures
         #region Remove Method
 
         [TestMethod]
-        public void Test_LinkedList_Method_Remove_SuccessOnlyFirstIndex()
+        public void Test_GenericLinkedList_Method_Remove_SuccessOnlyFirstIndex()
         {
             linkedList = new GenericLinkedList<int>();
             linkedList.PushLast(zeroInt);
@@ -242,7 +242,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Remove_SuccessOnlyLastIndex()
+        public void Test_GenericLinkedList_Method_Remove_SuccessOnlyLastIndex()
         {
             linkedList = new GenericLinkedList<int>();
             linkedList.PushLast(zeroInt);
@@ -275,17 +275,33 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Remove_IndexTooHigh()
+        public void Test_GenericLinkedList_Method_Remove_IndexTooHigh()
         {
             linkedList = new GenericLinkedList<int>();
-            linkedList.Remove(0);
+            node = linkedList.Remove(0);
+            Assert.IsNull(node);
+            linkedList.PushLast(0);
+            node = linkedList.Remove(1);
+            Assert.IsNull(node);
+            linkedList.PushLast(0);
+            node = linkedList.Remove(2);
+            Assert.IsNull(node);
+
+            // Tested for 0, n, and n+1 items. Should be valued for all further values.
         }
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Remove_IndexTooLow()
+        public void Test_GenericLinkedList_Method_Remove_IndexTooLow()
         {
+            linkedList = new GenericLinkedList<int>();
+            node = linkedList.Remove(0);
+            Assert.IsNull(node);
+            linkedList.PushLast(0);
+            node = linkedList.Remove(-1);
+            Assert.IsNull(node);
 
+            // Tested for n and n+1 items. Should be valid for all further values.
         }
 
         #endregion Remove Method
@@ -294,7 +310,7 @@ namespace BudgetTrackerTests.DataStructures
         #region Push/Pop Methods
 
         [TestMethod]
-        public void Test_LinkedList_Method_PushFirst_Success()
+        public void Test_GenericLinkedList_Method_PushFirst_Success()
         {
             linkedList = new GenericLinkedList<int>();
 
@@ -328,7 +344,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_PopFirst_Success()
+        public void Test_GenericLinkedList_Method_PopFirst_Success()
         {
             linkedList = new GenericLinkedList<int>();
             linkedList.PushFirst(zeroInt);
@@ -363,7 +379,7 @@ namespace BudgetTrackerTests.DataStructures
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_LinkedList_Method_PopFirst_EmptyList()
+        public void Test_GenericLinkedList_Method_PopFirst_EmptyList()
         {
             linkedList = new GenericLinkedList<int>();
             node = linkedList.PopFirst();
@@ -371,7 +387,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_PushLast_Success()
+        public void Test_GenericLinkedList_Method_PushLast_Success()
         {
             linkedList = new GenericLinkedList<int>();
 
@@ -405,7 +421,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_PopLast_Success()
+        public void Test_GenericLinkedList_Method_PopLast_Success()
         {
             linkedList = new GenericLinkedList<int>();
             linkedList.PushLast(zeroInt);
@@ -440,7 +456,7 @@ namespace BudgetTrackerTests.DataStructures
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_LinkedList_Method_PopLast_EmptyList()
+        public void Test_GenericLinkedList_Method_PopLast_EmptyList()
         {
             linkedList = new GenericLinkedList<int>();
             node = linkedList.PopLast();
@@ -452,7 +468,7 @@ namespace BudgetTrackerTests.DataStructures
         #region Queuing methods
 
         [TestMethod]
-        public void Test_LinkedList_Method_Enqueue_Success()
+        public void Test_GenericLinkedList_Method_Enqueue_Success()
         {
             linkedList = new GenericLinkedList<int>();
 
@@ -486,7 +502,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_LinkedList_Method_Dequeue_Success()
+        public void Test_GenericLinkedList_Method_Dequeue_Success()
         {
             linkedList = new GenericLinkedList<int>();
             linkedList.Enqueue(zeroInt);
@@ -521,7 +537,7 @@ namespace BudgetTrackerTests.DataStructures
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_LinkedList_Method_Dequeue_EmptyList()
+        public void Test_GenericLinkedList_Method_Dequeue_EmptyList()
         {
             linkedList = new GenericLinkedList<int>();
             node = linkedList.Dequeue();

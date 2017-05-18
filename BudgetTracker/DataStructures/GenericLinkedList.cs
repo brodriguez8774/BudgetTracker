@@ -77,9 +77,9 @@ namespace BudgetTracker.DataStructures
         #region Methods
 
         /// <summary>
-        /// 
+        /// Compares GenericLinkedLists objects node values and list length.
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">Compare value of LinkedLists.</param>
         /// <returns></returns>
         public int CompareTo(object obj)
         {
