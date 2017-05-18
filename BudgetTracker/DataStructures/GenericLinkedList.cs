@@ -13,7 +13,7 @@ namespace BudgetTracker.DataStructures
     /// Queue = Enqueue/Dequeue.
     /// </summary>
     /// <typeparam name="T">Generic Datatype</typeparam>
-    public class GenericLinkedList<T>
+    public class GenericLinkedList<T> :IComparable
     {
         #region Variables
 
@@ -75,6 +75,39 @@ namespace BudgetTracker.DataStructures
 
 
         #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            GenericLinkedList<T> passedList = (GenericLinkedList<T>)obj;
+
+            this.currentNode = this.firstNode;
+            passedList.currentNode = passedList.firstNode;
+            while (this.currentNode != null && passedList.currentNode != null)
+            {
+                int compareValue = this.currentNode.CompareTo(passedList.currentNode);
+                if (compareValue != 0)
+                {
+                    return compareValue;
+                }
+                this.currentNode = this.currentNode.Next;
+                passedList.currentNode = passedList.currentNode.Next;
+            }
+
+            if (this.currentNode == null && passedList.currentNode != null)
+            {
+                return -1;
+            } else if (passedList.currentNode == null && this.currentNode != null) {
+                return 1;
+            }
+
+            return 0;
+        }
+
 
         /// <summary>
         /// Add new node to given index in Linked List.

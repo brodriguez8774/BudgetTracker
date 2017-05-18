@@ -143,5 +143,73 @@ namespace BudgetTrackerTests.Models
 
         #endregion Class Creation Tests
 
+
+
+        #region Method Tests
+
+        [TestMethod]
+        public void Test_EntityMethod_CompareTo_Equal() {
+            Entity entity = new Entity("Test Category", "Test First Name", "Test Last Name", address, 1234567890);
+            int compareValue = entity.CompareTo(entity);
+            Assert.AreEqual(0, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_EntityMethod_CompareTo_Equal_EmptyLastName()
+        {
+            Entity entity = new Entity("Test Category", "Test First Name", address, 1234567890);
+            int compareValue = entity.CompareTo(entity);
+            Assert.AreEqual(0, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_EntityMethod_CompareTo_CategoryDiffers()
+        {
+            Entity entitySmaller = new Entity("Test Category 1", "Test First Name", "Test Last Name", address, 1234567890);
+            Entity entityLarger = new Entity("Test Category 2", "Test First Name", "Test Last Name", address, 1234567890);
+            int compareValue = entitySmaller.CompareTo(entityLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = entityLarger.CompareTo(entitySmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_EntityMethod_CompareTo_FirstNameDiffers()
+        {
+            Entity entitySmaller = new Entity("Test Category", "Test First Name 1", "Test Last Name", address, 1234567890);
+            Entity entityLarger = new Entity("Test Category", "Test First Name 2", "Test Last Name", address, 1234567890);
+            int compareValue = entitySmaller.CompareTo(entityLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = entityLarger.CompareTo(entitySmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_EntityMethod_CompareTo_LastNameDiffers()
+        {
+            Entity entitySmaller = new Entity("Test Category", "Test First Name", "Test Last Name 1", address, 1234567890);
+            Entity entityLarger = new Entity("Test Category", "Test First Name", "Test Last Name 2", address, 1234567890);
+            int compareValue = entitySmaller.CompareTo(entityLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = entityLarger.CompareTo(entitySmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCastException))]
+        public void Test_EntityMethod_CompareTo_InvalidType()
+        {
+            Entity entity = new Entity("Test Category", "Test First Name", "Test Last Name", address, 1234567890);
+            string otherType = "Other Type";
+            entity.CompareTo(otherType);
+        }
+
+        #endregion Method Tests
+
     }
 }

@@ -10,7 +10,7 @@ namespace BudgetTracker.Models
     /// <summary>
     /// Standard Address Model.
     /// </summary>
-    public class Address
+    public class Address : IComparable
     {
         #region Variables
 
@@ -127,6 +127,48 @@ namespace BudgetTracker.Models
         }
 
         #endregion Properties
+
+
+
+        #region Methods
+
+        /// <summary>
+        /// Compares Address objects using:
+        /// Postal Code, Region, City, and Street.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>Compare value of address.</returns>
+        public int CompareTo(object obj)
+        {
+            Address passedAddress = (Address)obj;
+
+            int compareValue = this.PostalCode.CompareTo(passedAddress.PostalCode);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.Region.CompareTo(passedAddress.Region);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.City.CompareTo(passedAddress.City);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.Street.CompareTo(passedAddress.Street);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+            return 0;
+        }
+
+        #endregion Methods
 
     }
 }

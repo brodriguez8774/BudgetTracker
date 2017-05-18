@@ -26,6 +26,8 @@ namespace BudgetTrackerTests.Models
         private DateTime dateEndDefault;
 
         private readonly DateTime dateToday = DateTime.Today;
+        private readonly DateTime dateTomorrow = DateTime.Today.AddDays(1);
+        private readonly DateTime dateYesterday = DateTime.Today.AddDays(-1);
         private readonly DateTime dateNextWeek = DateTime.Today.AddDays(7);
         private readonly DateTime dateLastWeek = DateTime.Today.AddDays(-7);
 
@@ -145,6 +147,61 @@ namespace BudgetTrackerTests.Models
 
 
         #region Method Tests
+
+        [TestMethod]
+        public void Test_RepeatingTransactionMethod_CompareTo_Equal()
+        {
+            RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, dateEnd, paymentFrom, paymentTo);
+            int compareValue = repeatingTransaction.CompareTo(repeatingTransaction);
+            Assert.AreEqual(0, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_RepeatingTransactionMethod_CompareTo_Equal_EmptyDateEnd()
+        {
+            RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, paymentFrom, paymentTo);
+            int compareValue = repeatingTransaction.CompareTo(repeatingTransaction);
+            Assert.AreEqual(0, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_REpeatingTransactionMethod_CompareTo_DateStartDiffers()
+        {
+            RepeatingTransaction repeatingTransactionSmaller = new RepeatingTransaction(frequency, dateYesterday, dateEnd, paymentFrom, paymentTo);
+            RepeatingTransaction repeatingTransactionLarger = new RepeatingTransaction(frequency, dateTomorrow, dateEnd, paymentFrom, paymentTo);
+            int comparevalue = repeatingTransactionSmaller.CompareTo(repeatingTransactionLarger);
+            Assert.AreEqual(-1, comparevalue);
+            comparevalue = repeatingTransactionLarger.CompareTo(repeatingTransactionSmaller);
+            Assert.AreEqual(1, comparevalue);
+        }
+
+
+        [TestMethod]
+        public void Test_RepeatingTransactionMethod_CompareTo_DateEndDiffers()
+        {
+            RepeatingTransaction repeatingTransactionSmaller = new RepeatingTransaction(frequency, dateStart, dateTomorrow, paymentFrom, paymentTo);
+            RepeatingTransaction repeatingTransactionLarger = new RepeatingTransaction(frequency, dateStart, dateNextWeek, paymentFrom, paymentTo);
+            int comparevalue = repeatingTransactionSmaller.CompareTo(repeatingTransactionLarger);
+            Assert.AreEqual(-1, comparevalue);
+            comparevalue = repeatingTransactionLarger.CompareTo(repeatingTransactionSmaller);
+            Assert.AreEqual(1, comparevalue);
+        }
+
+
+        [TestMethod]
+        public void Test_RepeatingTransactionMethod_CompareTo_TransactionListDiffers()
+        {
+            RepeatingTransaction repeatingTransactionSmaller = new RepeatingTransaction(2, dateStart, dateEnd, paymentFrom, paymentTo);
+            RepeatingTransaction repeatingTransactionLarger = new RepeatingTransaction(1, dateStart, dateEnd, paymentFrom, paymentTo);
+            //repeatingTransactionSmaller.TransactionList
+            int comparevalue = repeatingTransactionSmaller.CompareTo(repeatingTransactionLarger);
+            Assert.AreEqual(-1, comparevalue);
+            comparevalue = repeatingTransactionLarger.CompareTo(repeatingTransactionSmaller);
+            Assert.AreEqual(1, comparevalue);
+        }
+
 
         [TestMethod]
         public void Test_RepeatingTransactionMethod_CompleteTransaction_IndexValues() {

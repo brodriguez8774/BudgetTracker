@@ -148,5 +148,88 @@ namespace BudgetTrackerTests.Models
 
         #endregion Class Creation Tests
 
+        #region Method Tests
+
+        [TestMethod]
+        public void Test_TransactionMethod_CompareTo_Equal()
+        {
+            Transaction transaction = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
+            int compareValue = transaction.CompareTo(transaction);
+            Assert.AreEqual(0, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_TransactionMethod_CompareTo_DateProcessedDiffers()
+        {
+            Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateYesterday, dateDue);
+            Transaction transactionLarger = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateToday, dateDue);
+            int compareValue = transactionSmaller.CompareTo(transactionLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = transactionLarger.CompareTo(transactionSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_TransactionMethod_CompareTo_DescriptionDiffers()
+        {
+            Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description 1", 123.4m, dateProcessed, dateDue);
+            Transaction transactionLarger = new Transaction(paymentFrom, paymentTo, "Test Description 2", 123.4m, dateProcessed, dateDue);
+            int compareValue = transactionSmaller.CompareTo(transactionLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = transactionLarger.CompareTo(transactionSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_TransactionMethod_CompareTo_TransactionAmountDiffers()
+        {
+            Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
+            Transaction transactionLarger = new Transaction(paymentFrom, paymentTo, "Test Description", 123.5m, dateProcessed, dateDue);
+            int compareValue = transactionSmaller.CompareTo(transactionLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = transactionLarger.CompareTo(transactionSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_TransactionMethod_CompareTo_PaymentFromDiffers()
+        {
+            Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
+            paymentFrom = new Entity("Test Person", "Test First Name 1", "Test Last Name", address, 5555555555);
+            Transaction transactionLarger = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
+            int compareValue = transactionSmaller.CompareTo(transactionLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = transactionLarger.CompareTo(transactionSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_TransactionMethod_CompareTo_PaymentToDiffers()
+        {
+            Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
+            paymentTo = new Entity("Test Company", "Test Name 1", address, 5555555555);
+            Transaction transactionLarger = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
+            int compareValue = transactionSmaller.CompareTo(transactionLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = transactionLarger.CompareTo(transactionSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCastException))]
+        public void Test_TransactionMethod_CompareTo_InvalidType()
+        {
+            Transaction transaction = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
+            String otherType = "Other Type";
+            transaction.CompareTo(otherType);
+        }
+
+        #endregion Method Tests
     }
 }

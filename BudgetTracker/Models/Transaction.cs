@@ -180,5 +180,54 @@ namespace BudgetTracker.Models
 
         #endregion Properties
 
+
+
+        #region Methods
+
+        /// <summary>
+        /// Compares Transaction objects using:
+        /// dateProcessed, description, transactionAmount, paymentFrom, and paymentTo.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            Transaction passedTransaction = (Transaction)obj;
+
+            int compareValue = this.DateProcessed.CompareTo(passedTransaction.DateProcessed);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.Description.CompareTo(passedTransaction.Description);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.TransactionAmount.CompareTo(passedTransaction.TransactionAmount);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.PaymentFrom.CompareTo(passedTransaction.PaymentFrom);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.PaymentTo.CompareTo(passedTransaction.PaymentTo);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            return 0;
+        }
+
+        #endregion Methods
+
     }
 }

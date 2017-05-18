@@ -122,5 +122,75 @@ namespace BudgetTrackerTests.Models
 
         #endregion Class Creation Tests
 
+        #region Method Tests
+
+        [TestMethod]
+        public void TestAddressMethod_CompareTo_Equal()
+        {
+            Address address = new Address("Test Street", "Test City", "Test Region", 12345);
+            int compareValue = address.CompareTo(address);
+            Assert.AreEqual(0, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_AddressMethod_CompareTo_StreetDiffers()
+        {
+            Address addressSmaller = new Address("Test Street 1", "Test City", "Test Region", 12345);
+            Address addressLarger = new Address("Test Street 2", "Test City", "Test Region", 12345);
+            int compareValue = addressSmaller.CompareTo(addressLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = addressLarger.CompareTo(addressSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_AddressMethod_CompareTo_CityDiffers()
+        {
+            Address addressSmaller = new Address("Test Street", "Test City 1", "Test Region", 12345);
+            Address addressLarger = new Address("Test Street", "Test City 2", "Test Region", 12345);
+            int compareValue = addressSmaller.CompareTo(addressLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = addressLarger.CompareTo(addressSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_AddressMethod_CompareTo_RegionDiffers()
+        {
+            Address addressSmaller = new Address("Test Street", "Test City", "Test Region 1", 12345);
+            Address addressLarger = new Address("Test Street", "Test City", "Test Region 2", 12345);
+            int compareValue = addressSmaller.CompareTo(addressLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = addressLarger.CompareTo(addressSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        public void Test_AddressMethod_CompareTo_PostalCodeDiffers()
+        {
+            Address addressSmaller = new Address("Test Street", "Test City", "Test Region", 12345);
+            Address addressLarger = new Address("Test Street", "Test City", "Test Region", 12346);
+            int compareValue = addressSmaller.CompareTo(addressLarger);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = addressLarger.CompareTo(addressSmaller);
+            Assert.AreEqual(1, compareValue);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCastException))]
+        public void Test_AddressMethod_CompareTo_InvalidType()
+        {
+            Address address = new Address("Test Street", "Test City", "Test Region", 12345);
+            string otherType = "Other Type";
+            address.CompareTo(otherType);
+        }
+
+        #endregion Method Tests
+
     }
 }

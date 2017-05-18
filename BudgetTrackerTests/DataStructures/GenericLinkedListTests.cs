@@ -49,6 +49,23 @@ namespace BudgetTrackerTests.DataStructures
 
         #region Method Tests
 
+        public void Test_LinkedListMethod_CompareTo()
+        {
+            GenericLinkedList<string> linkedList1 = new GenericLinkedList<string>();
+            GenericLinkedList<string> linkedList2 = new GenericLinkedList<string>();
+
+            linkedList1.PushLast("Cat");
+            linkedList2.PushLast("Cat");
+            int compareValue = linkedList1.CompareTo(linkedList2);
+            Assert.AreEqual(0, compareValue);
+
+            linkedList2.PushLast("Dog");
+            compareValue = linkedList1.CompareTo(linkedList2);
+            Assert.AreEqual(-1, compareValue);
+            compareValue = linkedList2.CompareTo(linkedList1);
+            Assert.AreEqual(1, compareValue);
+        }
+
         #region Add Method
 
         [TestMethod]

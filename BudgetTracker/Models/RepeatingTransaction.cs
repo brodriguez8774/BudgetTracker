@@ -159,6 +159,52 @@ namespace BudgetTracker.Models
         #region Methods
 
         /// <summary>
+        /// Compares RepeatingTransaction objects using:
+        /// dateStart, dateEnd, and transactionList.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            RepeatingTransaction passedRepeatingTransaction = (RepeatingTransaction)obj;
+
+            int compareValue = this.DateStart.CompareTo(passedRepeatingTransaction.DateStart);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.DateEnd.CompareTo(passedRepeatingTransaction.DateEnd);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.TransactionList.CompareTo(passedRepeatingTransaction.TransactionList);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Finalizes the next transaction in the list.
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="transactionAmount"></param>
+        /// <param name="dateProcessed"></param>
+        public void CompleteTransaction(string description, decimal transactionAmount, DateTime dateProcessed)
+        {
+            lastCompletedTransactionIndex++;
+            transactionList.Retrieve(lastCompletedTransactionIndex).Data.Description = description;
+            transactionList.Retrieve(lastCompletedTransactionIndex).Data.TransactionAmount = transactionAmount;
+            transactionList.Retrieve(lastCompletedTransactionIndex).Data.DateProcessed = dateProcessed;
+        }
+
+
+        /// <summary>
         /// Initializes linked list of transaction occurances.
         /// </summary>
         private void InitializeLinkedList()
@@ -179,21 +225,6 @@ namespace BudgetTracker.Models
                 transactionList.PushLast(new Transaction(paymentFrom, paymentTo, dateProcessed));
             }
             lastCompletedTransactionIndex = -1;
-        }
-
-
-        /// <summary>
-        /// Finalizes the next transaction in the list.
-        /// </summary>
-        /// <param name="description"></param>
-        /// <param name="transactionAmount"></param>
-        /// <param name="dateProcessed"></param>
-        public void CompleteTransaction(string description, decimal transactionAmount, DateTime dateProcessed)
-        {
-            lastCompletedTransactionIndex++;
-            transactionList.Retrieve(lastCompletedTransactionIndex).Data.Description = description;
-            transactionList.Retrieve(lastCompletedTransactionIndex).Data.TransactionAmount = transactionAmount;
-            transactionList.Retrieve(lastCompletedTransactionIndex).Data.DateProcessed = dateProcessed;
         }
 
         #endregion Methods

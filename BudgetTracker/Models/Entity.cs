@@ -10,7 +10,7 @@ namespace BudgetTracker.Models
     /// <summary>
     /// An entity such as a person, business, company, etc which may handle transactions.
     /// </summary>
-    public class Entity
+    public class Entity : IComparable
     {
         #region Variables
 
@@ -165,5 +165,48 @@ namespace BudgetTracker.Models
 
         #endregion Properties
 
+
+
+        #region Methods
+
+        /// <summary>
+        /// Compares Entity objects using:
+        /// category, firstName, and lastName.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            Entity passedEntity = (Entity)obj;
+
+            int compareValue = this.Category.CompareTo(passedEntity.Category);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            compareValue = this.FirstName.CompareTo(passedEntity.FirstName);
+            if (compareValue != 0)
+            {
+                return compareValue;
+            }
+
+            try
+            {
+                compareValue = this.LastName.CompareTo(passedEntity.LastName);
+                if (compareValue != 0)
+                {
+                    return compareValue;
+                }
+            }
+            catch
+            {
+                // Ensures method does not crash if last name field is empty.
+            }
+
+            return 0;
+        }
+
+        #endregion Methods
     }
 }

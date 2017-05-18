@@ -12,7 +12,7 @@ namespace BudgetTracker.Interfaces
     /// <summary>
     /// Requirements for any given type of transaction.
     /// </summary>
-    interface ITransaction
+    interface ITransaction : IComparable
     {
         Entity PaymentFrom { get; set; }            // Entity making payment.
 
