@@ -22,6 +22,10 @@ namespace BudgetTrackerTests.DataStructures
 
         #endregion Variables
 
+
+
+        #region Initialization
+
         [TestInitialize]
         public void Initialize()
         {
@@ -34,9 +38,14 @@ namespace BudgetTrackerTests.DataStructures
             testString3 = "Tested";
         }
 
+        #endregion Initialization
+
+
+
+        #region Method Tests
 
         [TestMethod]
-        public void Test_GenericNodeMethod_CompareTo_Int_Equal()
+        public void Test_GenericNode_Method_CompareTo_IntEqual()
         {
             GenericNode<int> intNode1 = new GenericNode<int>();
             intNode1.Data = zeroInt;
@@ -47,7 +56,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_GenericNodeMethod_CompareTo_Int_Differs()
+        public void Test_GenericNode_Method_CompareTo_IntDiffers()
         {
             GenericNode<int> intNode1 = new GenericNode<int>();
             GenericNode<int> intNode2 = new GenericNode<int>();
@@ -75,7 +84,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_GenericNodeMethod_CompareTo_Decimal_Equal()
+        public void Test_GenericNode_Method_CompareTo_DecimalEqual()
         {
             GenericNode<decimal> decimalNode1 = new GenericNode<decimal>();
             decimalNode1.Data = 123.4m;
@@ -85,7 +94,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_GenericNodeMethod_CompareTo_Decimal_Differs()
+        public void Test_GenericNode_Method_CompareTo_DecimalDiffers()
         {
             GenericNode<decimal> decimalNode1 = new GenericNode<decimal>();
             GenericNode<decimal> decimalNode2 = new GenericNode<decimal>();
@@ -111,7 +120,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_GenericNodeMethod_CompareTo_String_Equal()
+        public void Test_GenericNode_Method_CompareTo_StringEqual()
         {
             GenericNode<string> stringNode1 = new GenericNode<string>();
             stringNode1.Data = testString1;
@@ -121,7 +130,7 @@ namespace BudgetTrackerTests.DataStructures
 
 
         [TestMethod]
-        public void Test_GenericeNodeMethod_CompareTo_String_Differs()
+        public void Test_GenericNode_Method_CompareTo_StringDiffers()
         {
             GenericNode<string> stringNode1 = new GenericNode<string>();
             GenericNode<string> stringNode2 = new GenericNode<string>();
@@ -145,7 +154,7 @@ namespace BudgetTrackerTests.DataStructures
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void Test_GenericNodeMethod_CompareTo_NullString()
+        public void Test_GenericNode_Method_CompareTo_NullString()
         {
             GenericNode<string> stringNode1 = new GenericNode<string>();
             GenericNode<string> stringNode2 = new GenericNode<string>();
@@ -154,5 +163,7 @@ namespace BudgetTrackerTests.DataStructures
 
             stringNode2.CompareTo(stringNode1);
         }
+
+        #endregion Method Tests
     }
 }

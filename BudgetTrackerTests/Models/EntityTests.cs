@@ -30,6 +30,10 @@ namespace BudgetTrackerTests.Models
 
         #endregion Variables
 
+
+
+        #region Initialization
+
         [TestInitialize]
         public void Initialize()
         {
@@ -47,12 +51,14 @@ namespace BudgetTrackerTests.Models
             phoneNumberLarge = 12345678901;
         }
 
-        #region Class Creation Tests
+        #endregion Initialization
+
+
 
         #region Constructor Tests
 
         [TestMethod]
-        public void Test_EntityCreation_PersonConstructor_Good()
+        public void Test_Entity_Constructor_Person()
         {
             Entity entity = new Entity(category, firstName, lastName, address, phoneNumber);
             Assert.AreEqual(category, entity.Category);
@@ -63,7 +69,7 @@ namespace BudgetTrackerTests.Models
         }
 
         [TestMethod]
-        public void Test_EntityCreation_CompanyConstructor_Good()
+        public void Test_Entity_Constructor_Company()
         {
             Entity entity = new Entity(category, companyName, address, phoneNumber);
             Assert.AreEqual(category, entity.Category);
@@ -74,81 +80,81 @@ namespace BudgetTrackerTests.Models
 
         #endregion ConstructorTests
 
-        #region Class Property Tests
+
+
+        #region Property Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_EntityCreation_CategoryNull()
+        public void Test_Entity_Property_Category_Null()
         {
             Entity entity = new Entity(categoryNull, firstName, lastName, address, phoneNumber);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_EntityCreation_CategoryEmpty()
+        public void Test_Entity_Property_Category_Empty()
         {
             Entity entity = new Entity(categoryEmpty, firstName, lastName, address, phoneNumber);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_EntityCreation_FirstNameNull()
+        public void Test_Entity_Property_FirstName_Null()
         {
             Entity entity = new Entity(category, firstNameNull, lastName, address, phoneNumber);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_EntityCreation_FirstNameEmpty()
+        public void Test_Entity_Property_FirstName_Empty()
         {
             Entity entity = new Entity(category, firstNameEmpty, lastName, address, phoneNumber);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_EntityCreation_LastNameNull()
+        public void Test_Entity_Property_LastName_Null()
         {
             Entity entity = new Entity(category, firstName, lastNameNull, address, phoneNumber);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_EntityCreation_LastNameEmpty()
+        public void Test_Entity_Property_LastName_Empty()
         {
             Entity entity = new Entity(category, firstName, lastNameEmpty, address, phoneNumber);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_EntityCreation_AddressNull()
+        public void Test_Entity_Property_Address_Null()
         {
             Entity entity = new Entity(category, firstName, lastName, addressNull, phoneNumber);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Test_EntityCreation_PhoneNumberSmall()
+        public void Test_Entity_Property_PhoneNumber_Small()
         {
             Entity entity = new Entity(category, firstName, lastName, address, phoneNumberSmall);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Test_EntityCreation_PhoneNumberLarge()
+        public void Test_Entity_Property_PhoneNumber_Large()
         {
             Entity entity = new Entity(category, firstName, lastName, address, phoneNumberLarge);
         }
 
-        #endregion Class Property Tests
-
-        #endregion Class Creation Tests
+        #endregion Property Tests
 
 
 
         #region Method Tests
 
         [TestMethod]
-        public void Test_EntityMethod_CompareTo_Equal() {
+        public void Test_Entity_Method_CompareTo_Equal() {
             Entity entity = new Entity("Test Category", "Test First Name", "Test Last Name", address, 1234567890);
             int compareValue = entity.CompareTo(entity);
             Assert.AreEqual(0, compareValue);
@@ -156,7 +162,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_EntityMethod_CompareTo_Equal_EmptyLastName()
+        public void Test_Entity_Method_CompareTo_Equal_EmptyLastName()
         {
             Entity entity = new Entity("Test Category", "Test First Name", address, 1234567890);
             int compareValue = entity.CompareTo(entity);
@@ -165,7 +171,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_EntityMethod_CompareTo_CategoryDiffers()
+        public void Test_Entity_Method_CompareTo_CategoryDiffers()
         {
             Entity entitySmaller = new Entity("Test Category 1", "Test First Name", "Test Last Name", address, 1234567890);
             Entity entityLarger = new Entity("Test Category 2", "Test First Name", "Test Last Name", address, 1234567890);
@@ -177,7 +183,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_EntityMethod_CompareTo_FirstNameDiffers()
+        public void Test_Entity_Method_CompareTo_FirstNameDiffers()
         {
             Entity entitySmaller = new Entity("Test Category", "Test First Name 1", "Test Last Name", address, 1234567890);
             Entity entityLarger = new Entity("Test Category", "Test First Name 2", "Test Last Name", address, 1234567890);
@@ -189,7 +195,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_EntityMethod_CompareTo_LastNameDiffers()
+        public void Test_Entity_Method_CompareTo_LastNameDiffers()
         {
             Entity entitySmaller = new Entity("Test Category", "Test First Name", "Test Last Name 1", address, 1234567890);
             Entity entityLarger = new Entity("Test Category", "Test First Name", "Test Last Name 2", address, 1234567890);
@@ -202,7 +208,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(InvalidCastException))]
-        public void Test_EntityMethod_CompareTo_InvalidType()
+        public void Test_Entity_Method_CompareTo_InvalidType()
         {
             Entity entity = new Entity("Test Category", "Test First Name", "Test Last Name", address, 1234567890);
             string otherType = "Other Type";
@@ -210,6 +216,5 @@ namespace BudgetTrackerTests.Models
         }
 
         #endregion Method Tests
-
     }
 }

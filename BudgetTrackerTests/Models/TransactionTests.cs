@@ -34,6 +34,10 @@ namespace BudgetTrackerTests.Models
 
         #endregion Variables
 
+
+
+        #region Initialization
+
         [TestInitialize]
         public void Initialize()
         {
@@ -49,12 +53,14 @@ namespace BudgetTrackerTests.Models
             dateDue = dateToday;
         }
 
-        #region Class Creation Tests
+        #endregion Initialization
+
+
 
         #region Constructor Tests
 
         [TestMethod]
-        public void Test_TransactionCreation_BaseConstructor_Good()
+        public void Test_Transaction_Constructor_Base()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, dateDue);
             Assert.AreEqual(paymentFrom, transaction.PaymentFrom);
@@ -64,7 +70,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_TransactionCreation_FullTransactionConstructor_Good()
+        public void Test_Transaction_Constructor_FullTransaction()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmount, dateProcessed, dateDue);
             Assert.AreEqual(paymentFrom, transaction.PaymentFrom);
@@ -79,11 +85,11 @@ namespace BudgetTrackerTests.Models
 
 
 
-        #region Class Property Tests
+        #region Property Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_TransactionCreation_PaymentFromNull()
+        public void Test_Transaction_Property_PaymentFrom_Null()
         {
             Transaction transaction = new Transaction(paymentFromNull, paymentTo, description, transactionAmount, dateProcessed, dateDue);
         }
@@ -91,7 +97,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_TransactionCreation_PaymentToNull()
+        public void Test_Transaction_Property_PaymentTo_Null()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentToNull, description, transactionAmount, dateProcessed, dateDue);
         }
@@ -99,7 +105,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_TransactionCreation_DescriptionNull()
+        public void Test_Transaction_Property_Description_Null()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, descriptionNull, transactionAmount, dateProcessed, dateDue);
         }
@@ -107,7 +113,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_TransactionCreation_DescriptionEmpty()
+        public void Test_Transaction_Property_Description_Empty()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, descriptionEmpty, transactionAmount, dateProcessed, dateDue);
         }
@@ -115,7 +121,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_TransactionCreation_TransactionAmountZero()
+        public void Test_Transaction_Property_TransactionAmount_Zero()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmountZero, dateProcessed, dateDue);
         }
@@ -123,7 +129,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_TransactionCreation_DateProcessedDefault()
+        public void Test_Transaction_Property_DateProcessed_Default()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmount, dateProcessedDefault, dateDue);
         }
@@ -131,7 +137,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_TransactionCreation_DateProcessedInFuture()
+        public void Test_Transaction_Property_DateProcessed_InFuture()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmount, dateProcessedFuture, dateDue);
         }
@@ -139,19 +145,19 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_TransactionCreation_DateDueDefault()
+        public void Test_Transaction_DateDue_Default()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, description, transactionAmount, dateProcessed, dateDueDefault);
         }
 
-        #endregion Class Property Tests
+        #endregion Property Tests
 
-        #endregion Class Creation Tests
+
 
         #region Method Tests
 
         [TestMethod]
-        public void Test_TransactionMethod_CompareTo_Equal()
+        public void Test_Transaction_Method_CompareTo_Equal()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
             int compareValue = transaction.CompareTo(transaction);
@@ -160,7 +166,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_TransactionMethod_CompareTo_DateProcessedDiffers()
+        public void Test_Transaction_Method_CompareTo_DateProcessedDiffers()
         {
             Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateYesterday, dateDue);
             Transaction transactionLarger = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateToday, dateDue);
@@ -172,7 +178,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_TransactionMethod_CompareTo_DescriptionDiffers()
+        public void Test_Transaction_Method_CompareTo_DescriptionDiffers()
         {
             Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description 1", 123.4m, dateProcessed, dateDue);
             Transaction transactionLarger = new Transaction(paymentFrom, paymentTo, "Test Description 2", 123.4m, dateProcessed, dateDue);
@@ -184,7 +190,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_TransactionMethod_CompareTo_TransactionAmountDiffers()
+        public void Test_Transaction_Method_CompareTo_TransactionAmountDiffers()
         {
             Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
             Transaction transactionLarger = new Transaction(paymentFrom, paymentTo, "Test Description", 123.5m, dateProcessed, dateDue);
@@ -196,7 +202,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_TransactionMethod_CompareTo_PaymentFromDiffers()
+        public void Test_Transaction_Method_CompareTo_PaymentFromDiffers()
         {
             Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
             paymentFrom = new Entity("Test Person", "Test First Name 1", "Test Last Name", address, 5555555555);
@@ -209,7 +215,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_TransactionMethod_CompareTo_PaymentToDiffers()
+        public void Test_Transaction_Method_CompareTo_PaymentToDiffers()
         {
             Transaction transactionSmaller = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
             paymentTo = new Entity("Test Company", "Test Name 1", address, 5555555555);
@@ -223,7 +229,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(InvalidCastException))]
-        public void Test_TransactionMethod_CompareTo_InvalidType()
+        public void Test_Transaction_Method_CompareTo_InvalidType()
         {
             Transaction transaction = new Transaction(paymentFrom, paymentTo, "Test Description", 123.4m, dateProcessed, dateDue);
             String otherType = "Other Type";

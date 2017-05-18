@@ -26,6 +26,10 @@ namespace BudgetTrackerTests.Models
 
         #endregion Variables
 
+
+
+        #region Initialization
+
         [TestInitialize]
         public void Initialize()
         {
@@ -40,10 +44,14 @@ namespace BudgetTrackerTests.Models
             postalCodeLarge = 1000000000;
         }
 
-        #region Class Creation Tests
+        #endregion Initialization
+
+
+
+        #region Constructor Tests
 
         [TestMethod]
-        public void Test_AddressCreation_Good()
+        public void Test_Address_Constructor()
         {
             Address address = new Address(street, city, region, postalCode);
 
@@ -53,11 +61,15 @@ namespace BudgetTrackerTests.Models
             Assert.AreEqual(postalCode, address.PostalCode);
         }
 
-        #region Class Property Tests
+        #endregion Constructor Tests
+
+
+
+        #region Property Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_AddressCreation_StreetNull()
+        public void Test_Address_Property_Street_Null()
         {
             Address address = new Address(streetNull, city, region, postalCode);
         }
@@ -65,7 +77,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_AddressCreation_StreetEmpty()
+        public void Test_Address_Property_Street_Empty()
         {
             Address address = new Address(streetEmpty, city, region, postalCode);
         }
@@ -73,7 +85,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_AddressCreation_CityNull()
+        public void Test_Address_Property_City_Null()
         {
             Address address = new Address(street, cityNull, region, postalCode);
         }
@@ -81,7 +93,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_AddressCreation_CityEmpty()
+        public void Test_Address_Property_City_Empty()
         {
             Address address = new Address(street, cityEmpty, region, postalCode);
         }
@@ -89,7 +101,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_AddressCreation_RegionNull()
+        public void Test_Address_Property_Region_Null()
         {
             Address address = new Address(street, city, regionNull, postalCode);
         }
@@ -97,7 +109,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_AddressCreation_RegionEmpty()
+        public void Test_Address_Property_Region_Empty()
         {
             Address address = new Address(street, city, regionEmpty, postalCode);
         }
@@ -105,7 +117,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Test_AddressCreation_PostalCodeSmall()
+        public void Test_Address_Property_PostalCode_Small()
         {
             Address address = new Address(street, city, region, postalCodeSmall);
         }
@@ -113,19 +125,19 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Test_AddressCreation_PostalCodeLarge()
+        public void Test_Address_Property_PostalCode_Large()
         {
             Address address = new Address(street, city, region, postalCodeLarge);
         }
 
-        #endregion Class Property Tests
+        #endregion Property Tests
 
-        #endregion Class Creation Tests
+
 
         #region Method Tests
 
         [TestMethod]
-        public void TestAddressMethod_CompareTo_Equal()
+        public void Test_Address_Method_CompareTo_Equal()
         {
             Address address = new Address("Test Street", "Test City", "Test Region", 12345);
             int compareValue = address.CompareTo(address);
@@ -134,7 +146,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_AddressMethod_CompareTo_StreetDiffers()
+        public void Test_Address_Method_CompareTo_StreetDiffers()
         {
             Address addressSmaller = new Address("Test Street 1", "Test City", "Test Region", 12345);
             Address addressLarger = new Address("Test Street 2", "Test City", "Test Region", 12345);
@@ -146,7 +158,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_AddressMethod_CompareTo_CityDiffers()
+        public void Test_Address_Method_CompareTo_CityDiffers()
         {
             Address addressSmaller = new Address("Test Street", "Test City 1", "Test Region", 12345);
             Address addressLarger = new Address("Test Street", "Test City 2", "Test Region", 12345);
@@ -158,7 +170,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_AddressMethod_CompareTo_RegionDiffers()
+        public void Test_Address_Method_CompareTo_RegionDiffers()
         {
             Address addressSmaller = new Address("Test Street", "Test City", "Test Region 1", 12345);
             Address addressLarger = new Address("Test Street", "Test City", "Test Region 2", 12345);
@@ -170,7 +182,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_AddressMethod_CompareTo_PostalCodeDiffers()
+        public void Test_Address_Method_CompareTo_PostalCodeDiffers()
         {
             Address addressSmaller = new Address("Test Street", "Test City", "Test Region", 12345);
             Address addressLarger = new Address("Test Street", "Test City", "Test Region", 12346);
@@ -183,7 +195,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(InvalidCastException))]
-        public void Test_AddressMethod_CompareTo_InvalidType()
+        public void Test_Address_Method_CompareTo_InvalidType()
         {
             Address address = new Address("Test Street", "Test City", "Test Region", 12345);
             string otherType = "Other Type";
@@ -191,6 +203,5 @@ namespace BudgetTrackerTests.Models
         }
 
         #endregion Method Tests
-
     }
 }

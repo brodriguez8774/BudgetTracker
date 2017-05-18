@@ -30,7 +30,7 @@ namespace BudgetTracker.Models
         #region Constructors
 
         /// <summary>
-        /// Constructor for payment with no end date.
+        /// Base Constructor. For payment with no end date.
         /// </summary>
         /// <param name="frequency"></param>
         /// <param name="dateStart"></param>

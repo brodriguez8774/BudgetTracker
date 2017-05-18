@@ -33,6 +33,10 @@ namespace BudgetTrackerTests.Models
 
         #endregion Variables
 
+
+
+        #region Initialize
+
         [TestInitialize]
         public void Initialize()
         {
@@ -47,12 +51,14 @@ namespace BudgetTrackerTests.Models
             dateEnd = dateNextWeek;
         }
 
-        #region Class Creation Tests
+        #endregion Initialize
+
+
 
         #region Constructor Tests
 
         [TestMethod]
-        public void Test_RepeatingTransactionCreation_NoEndDate_Good()
+        public void Test_RepeatingTransaction_Constructor_Base()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, paymentFrom, paymentTo);
             Assert.AreEqual(frequency, repeatingTransaction.Frequency);
@@ -63,7 +69,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_RepeatingTransactionCreation_HasEndDate_Good()
+        public void Test_RepeatingTransaction_Constructor_HasEndDate()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, dateEnd, paymentFrom, paymentTo);
             Assert.AreEqual(frequency, repeatingTransaction.Frequency);
@@ -76,7 +82,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_RepeatingTransactionCreation_StartDateEqualsEndDate()
+        public void Test_RepeatingTransaction_Constructor_StartDateEqualsEndDate()
         {
             dateStart = dateToday;
             dateEnd = dateToday;
@@ -91,7 +97,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_RepeatingTransactionCreation_StartDateAfterEndDate()
+        public void Test_RepeatingTransaction_Constructor_StartDateAfterEndDate()
         {
             dateStart = dateNextWeek;
             dateEnd = dateLastWeek;
@@ -107,11 +113,11 @@ namespace BudgetTrackerTests.Models
 
 
 
-        #region Class Property Tests
+        #region Property Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Test_RepeatingTransactionCreation_FrequencyZero()
+        public void Test_RepeatingTransaction_Property_FrequencyZero()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequencyZero, dateStart, dateEnd, paymentFrom, paymentTo);
         }
@@ -119,7 +125,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Test_RepeatingTransactionCreation_FrequencyNegative()
+        public void Test_RepeatingTransaction_Property_FrequencyNegative()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequencyNegative, dateStart, dateEnd, paymentFrom, paymentTo);
         }
@@ -127,7 +133,7 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_RepeatingTransactionCreation_DateStartDefault()
+        public void Test_RepeatingTransaction_Property_DateStartDefault()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStartDefault, dateEnd, paymentFrom, paymentTo);
         }
@@ -135,21 +141,19 @@ namespace BudgetTrackerTests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_RepeatingTransactionCreation_DateEndDefault()
+        public void Test_RepeatingTransaction_Property_DateEndDefault()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, dateEndDefault, paymentFrom, paymentTo);
         }
 
-        #endregion Class Property Tests
-
-        #endregion Class Creation Tests
+        #endregion Property Tests
 
 
 
         #region Method Tests
 
         [TestMethod]
-        public void Test_RepeatingTransactionMethod_CompareTo_Equal()
+        public void Test_RepeatingTransaction_Method_CompareTo_Equal()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, dateEnd, paymentFrom, paymentTo);
             int compareValue = repeatingTransaction.CompareTo(repeatingTransaction);
@@ -158,7 +162,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_RepeatingTransactionMethod_CompareTo_Equal_EmptyDateEnd()
+        public void Test_RepeatingTransaction_Method_CompareTo_Equal_EmptyDateEnd()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, paymentFrom, paymentTo);
             int compareValue = repeatingTransaction.CompareTo(repeatingTransaction);
@@ -167,7 +171,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_REpeatingTransactionMethod_CompareTo_DateStartDiffers()
+        public void Test_RepeatingTransaction_Method_CompareTo_DateStartDiffers()
         {
             RepeatingTransaction repeatingTransactionSmaller = new RepeatingTransaction(frequency, dateYesterday, dateEnd, paymentFrom, paymentTo);
             RepeatingTransaction repeatingTransactionLarger = new RepeatingTransaction(frequency, dateTomorrow, dateEnd, paymentFrom, paymentTo);
@@ -179,7 +183,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_RepeatingTransactionMethod_CompareTo_DateEndDiffers()
+        public void Test_RepeatingTransaction_Method_CompareTo_DateEndDiffers()
         {
             RepeatingTransaction repeatingTransactionSmaller = new RepeatingTransaction(frequency, dateStart, dateTomorrow, paymentFrom, paymentTo);
             RepeatingTransaction repeatingTransactionLarger = new RepeatingTransaction(frequency, dateStart, dateNextWeek, paymentFrom, paymentTo);
@@ -191,7 +195,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_RepeatingTransactionMethod_CompareTo_TransactionListDiffers()
+        public void Test_RepeatingTransaction_Method_CompareTo_TransactionListDiffers()
         {
             RepeatingTransaction repeatingTransactionSmaller = new RepeatingTransaction(2, dateStart, dateEnd, paymentFrom, paymentTo);
             RepeatingTransaction repeatingTransactionLarger = new RepeatingTransaction(1, dateStart, dateEnd, paymentFrom, paymentTo);
@@ -204,7 +208,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_RepeatingTransactionMethod_CompleteTransaction_IndexValues() {
+        public void Test_RepeatingTransaction_Method_CompleteTransaction_IndexValues() {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, paymentFrom, paymentTo);
             Assert.AreEqual(-1, repeatingTransaction.LastCompletedTransactionIndex);
             repeatingTransaction.CompleteTransaction("First Transaction", 15.99m, dateToday.AddMinutes(-20));
@@ -217,7 +221,7 @@ namespace BudgetTrackerTests.Models
 
 
         [TestMethod]
-        public void Test_RepeatingTransactionMethod_CompleteTransaction_NodeValues()
+        public void Test_RepeatingTransaction_Method_CompleteTransaction_NodeValues()
         {
             RepeatingTransaction repeatingTransaction = new RepeatingTransaction(frequency, dateStart, paymentFrom, paymentTo);
             Assert.IsNull(repeatingTransaction.TransactionList.FirstNode.Data.Description);
