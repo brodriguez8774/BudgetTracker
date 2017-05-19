@@ -18,6 +18,10 @@ namespace BudgetTracker
     {
         #region Variables
 
+        private Controller controller = Controller.Get();
+
+        private bool isValidBool;
+
         private ComboItem[] categoryArray = new ComboItem[] {
             new ComboItem(0, ""),
             new ComboItem(1, "Individual"),
@@ -94,29 +98,75 @@ namespace BudgetTracker
             HideCategoryComboBoxControl();
             HideTransactorControls();
             HideCancelTransactorButton();
+            HideErrorLabel();
             ResetCategoryComboboxControl();
             ResetTransactorControls();
+            ResetErrorLabel();
+
         }
 
         #region Transactor Tab
 
-        private void addTransactorButton_Click(object sender, EventArgs e)
+
+        #region Buttons
+
+        private void AddTransactorButton_Click(object sender, EventArgs e)
         {
             ShowCategoryComboBoxControl();
             ShowCancelTransactorButton();
         }
 
 
-        private void editTransactorButton_Click(object sender, EventArgs e)
+        private void EditTransactorButton_Click(object sender, EventArgs e)
         {
 
         }
 
 
-        private void removeTransactorButton_Click(object sender, EventArgs e)
+        private void RemoveTransactorButton_Click(object sender, EventArgs e)
         {
 
         }
+
+
+        private void SaveTransactorButton_Click(object sender, EventArgs e)
+        {
+            isValidBool = true;
+
+            string category = categoryComboBox.SelectedIndex.ToString();
+            string primaryName = ValidatePrimaryName();
+            string secondaryName = ValidateSecondaryName();
+            string phoneNumber = ValidatePhoneNumber();
+            string street = ValidateStreet();
+            string city = ValidateCity();
+            string region = ValidateRegion();
+            string postalCode = ValidatePostalCode();
+
+            if (isValidBool)
+            {
+                transactorListBox.Items.Add(controller.SaveTransactor(category, primaryName, secondaryName, phoneNumber, street, city, region, postalCode));
+            }
+        }
+
+
+        /// <summary>
+        /// Cancel current transactor tab action and hide/reset all fields.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelTransactorButton_Click(object sender, EventArgs e)
+        {
+            HideTransactorControls();
+            HideCategoryComboBoxControl();
+            HideCancelTransactorButton();
+            HideErrorLabel();
+            ResetTransactorControls();
+            ResetCategoryComboboxControl();
+            ResetErrorLabel();
+        }
+
+
+        #endregion Buttons
 
 
         #region Show/Hide Methods
@@ -142,14 +192,14 @@ namespace BudgetTracker
 
 
         /// <summary>
-        /// Shows controls in Transactor Tab.
+        /// Shows general controls in Transactor Tab.
         /// </summary>
         private void ShowTransactorControls()
         {
-            firstNameLabel.Visible = true;
-            firstNameTextBox.Visible = true;
-            lastNameLabel.Visible = true;
-            lastNameTextBox.Visible = true;
+            primaryNameLabel.Visible = true;
+            primaryNameTextBox.Visible = true;
+            secondaryNameLabel.Visible = true;
+            secondaryNameTextBox.Visible = true;
             phoneLabel1.Visible = true;
             phoneLabel2.Visible = true;
             phoneLabel3.Visible = true;
@@ -157,7 +207,7 @@ namespace BudgetTracker
             phoneTextBox2.Visible = true;
             phoneTextBox3.Visible = true;
             addressLabel.Visible = true;
-            addressTextBox.Visible = true;
+            streetTextBox.Visible = true;
             cityLabel.Visible = true;
             cityTextBox.Visible = true;
             regionLabel.Visible = true;
@@ -169,14 +219,14 @@ namespace BudgetTracker
 
 
         /// <summary>
-        /// Hides controls in Transactor Tab.
+        /// Hides general controls in Transactor Tab.
         /// </summary>
         private void HideTransactorControls()
         {
-            firstNameLabel.Visible = false;
-            firstNameTextBox.Visible = false;
-            lastNameLabel.Visible = false;
-            lastNameTextBox.Visible = false;
+            primaryNameLabel.Visible = false;
+            primaryNameTextBox.Visible = false;
+            secondaryNameLabel.Visible = false;
+            secondaryNameTextBox.Visible = false;
             phoneLabel1.Visible = false;
             phoneLabel2.Visible = false;
             phoneLabel3.Visible = false;
@@ -184,7 +234,7 @@ namespace BudgetTracker
             phoneTextBox2.Visible = false;
             phoneTextBox3.Visible = false;
             addressLabel.Visible = false;
-            addressTextBox.Visible = false;
+            streetTextBox.Visible = false;
             cityLabel.Visible = false;
             cityTextBox.Visible = false;
             regionLabel.Visible = false;
@@ -204,9 +254,30 @@ namespace BudgetTracker
         }
 
 
+        /// <summary>
+        /// Hides cancel button in transactor tab.
+        /// </summary>
         private void HideCancelTransactorButton()
         {
             cancelTransactorButton.Visible = false;
+        }
+
+
+        /// <summary>
+        /// Shows error label in transactor tab.
+        /// </summary>
+        private void ShowErrorLabel()
+        {
+            errorLabel.Visible = true;
+        }
+
+
+        /// <summary>
+        /// Hides error label in transactor tab.
+        /// </summary>
+        private void HideErrorLabel()
+        {
+            errorLabel.Visible = false;
         }
 
 
@@ -226,19 +297,28 @@ namespace BudgetTracker
 
 
         /// <summary>
-        /// Resets Transactor Tab back to default text values.
+        /// Resets general Transactor Tab back to default text values.
         /// </summary>
         private void ResetTransactorControls()
         {
-            firstNameTextBox.Clear();
-            lastNameTextBox.Clear();
+            primaryNameTextBox.Clear();
+            secondaryNameTextBox.Clear();
             phoneTextBox1.Clear();
             phoneTextBox2.Clear();
             phoneTextBox3.Clear();
-            addressTextBox.Clear();
+            streetTextBox.Clear();
             cityTextBox.Clear();
             regionComboBox.SelectedIndex = 0;
             postalCodeTextBox.Clear();
+        }
+
+
+        /// <summary>
+        /// Resets errorLabel.
+        /// </summary>
+        private void ResetErrorLabel()
+        {
+            errorLabel.Text = "Errors:" + Environment.NewLine;
         }
 
         #endregion Reset Methods
@@ -259,38 +339,194 @@ namespace BudgetTracker
 
             if (categoryComboBox.SelectedIndex == 1)
             {
-                firstNameLabel.Text = "First Name:";
-                lastNameLabel.Text = "Last Name";
+                primaryNameLabel.Text = "First Name:";
+                secondaryNameLabel.Text = "Last Name";
                 ShowTransactorControls();
             }
 
             if (categoryComboBox.SelectedIndex == 2)
             {
-                firstNameLabel.Text = "Primary Business Name:";
-                lastNameLabel.Text = "Secondary Business Name (Optional):";
+                primaryNameLabel.Text = "Primary Business Name:";
+                secondaryNameLabel.Text = "Secondary Business Name (Optional):";
                 ShowTransactorControls();
             }
         }
 
 
-        private void saveTransactorButton_Click(object sender, EventArgs e)
-        {
+        #region Validation
 
+        /// <summary>
+        /// Validate Primary Name.
+        /// </summary>
+        private string ValidatePrimaryName()
+        {
+            string primaryName = primaryNameTextBox.Text.Trim();
+
+            if (primaryName.Length == 0)
+            {
+                // Is not of proper length.
+                isValidBool = false;
+                if (categoryComboBox.SelectedIndex == 1)
+                {
+                    errorLabel.Text += "Invalid First Name" + Environment.NewLine;
+                }
+                else if (categoryComboBox.SelectedIndex == 2)
+                {
+                    errorLabel.Text += "Invalid Primary Name" + Environment.NewLine;
+                }
+                ShowErrorLabel();
+            }
+
+            return primaryName;
+        }
+
+        /// <summary>
+        /// Validate Secondary Name.
+        /// </summary>
+        private string ValidateSecondaryName()
+        {
+            string secondaryName = secondaryNameTextBox.Text.Trim();
+
+            // Field is optional is category "business" is selected.
+            if (categoryComboBox.SelectedIndex != 2)
+            {
+                if (secondaryName.Length == 0)
+                {
+                    // Is not of proper length.
+                    isValidBool = false;
+                    errorLabel.Text += "Invalid Last Name" + Environment.NewLine;
+                    ShowErrorLabel();
+                }
+            }
+
+            return secondaryName;
         }
 
 
         /// <summary>
-        /// Cancel current transactor tab action and hide/reset all fields.
+        /// Validate Phone Number.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cancelTransactorButton_Click(object sender, EventArgs e)
+        private string ValidatePhoneNumber()
         {
-            HideTransactorControls();
-            HideCategoryComboBoxControl();
-            HideCancelTransactorButton();
-            ResetTransactorControls();
-            ResetCategoryComboboxControl();
+            string phoneNumber = (phoneTextBox1.Text.Trim() + phoneTextBox2.Text.Trim() + phoneTextBox3.Text.Trim());
+
+            try
+            {
+                long.Parse(phoneNumber);
+                if (phoneNumber.Length != 10)
+                {
+                    // Is not of proper length.
+                    isValidBool = false;
+                    errorLabel.Text += "Invalid Phone Number" + Environment.NewLine;
+                    ShowErrorLabel();
+                }
+            }
+            catch
+            {
+                // Is not of type long.
+                isValidBool = false;
+                errorLabel.Text += "Invalid Phone Number" + Environment.NewLine;
+                ShowErrorLabel();
+            }
+
+            return phoneNumber;
+        }
+
+
+        /// <summary>
+        /// Validate Street.
+        /// </summary>
+        private string ValidateStreet()
+        {
+            string street = streetTextBox.Text.Trim();
+
+            if (street.Length == 0)
+            {
+                // Is not of proper length.
+                isValidBool = false;
+                errorLabel.Text += "Invalid Street" + Environment.NewLine;
+                ShowErrorLabel();
+            }
+
+            return street;
+        }
+
+
+        /// <summary>
+        /// Validate City.
+        /// </summary>
+        private string ValidateCity()
+        {
+            string city = cityTextBox.Text.Trim();
+
+            if (city.Length == 0)
+            {
+                // Is not of proper length.
+                isValidBool = false;
+                errorLabel.Text += "Invalid City" + Environment.NewLine;
+                ShowErrorLabel();
+            }
+
+            return city;
+        }
+
+
+        /// <summary>
+        /// Validate Region.
+        /// </summary>
+        private string ValidateRegion()
+        {
+            if (regionComboBox.SelectedIndex == 0)
+            {
+                // Is not valid selection.
+                isValidBool = false;
+                errorLabel.Text += "Invalid Region" + Environment.NewLine;
+                ShowErrorLabel();
+            }
+
+            return regionComboBox.SelectedIndex.ToString();
+        }
+
+
+        /// <summary>
+        /// Validate PostalCode.
+        /// </summary>
+        private string ValidatePostalCode()
+        {
+            string postalCode = postalCodeTextBox.Text.Trim();
+
+            try
+            {
+                Int32.Parse(postalCode);
+                if ((postalCode.Length < 3 || postalCode.Length > 10))
+                {
+                    // Is not of proper length.
+                    isValidBool = false;
+                    errorLabel.Text += "Invalid Zip" + Environment.NewLine;
+                    ShowErrorLabel();
+                }
+            }
+            catch
+            {
+                // Is not of type int.
+                isValidBool = false;
+                errorLabel.Text += "Invalid Zip" + Environment.NewLine;
+                ShowErrorLabel();
+            }
+            
+
+            return postalCode;
+        }
+
+        #endregion Validation
+
+
+        private void UpdateTransactorListBox(Entity[] entityArray)
+        {
+            for (int index = 0; entityArray[index] != null; index++)
+            {
+                transactorListBox.Items.Add(entityArray[index].ToString());
+            }
         }
 
         #endregion Transactor Tab

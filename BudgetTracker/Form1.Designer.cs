@@ -32,6 +32,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.transactorsTab = new System.Windows.Forms.TabPage();
             this.transactorGroupBox = new System.Windows.Forms.GroupBox();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.cancelTransactorButton = new System.Windows.Forms.Button();
             this.saveTransactorButton = new System.Windows.Forms.Button();
             this.categoryLabel = new System.Windows.Forms.Label();
@@ -48,12 +49,12 @@
             this.regionLabel = new System.Windows.Forms.Label();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
-            this.addressTextBox = new System.Windows.Forms.TextBox();
+            this.streetTextBox = new System.Windows.Forms.TextBox();
             this.addressLabel = new System.Windows.Forms.Label();
-            this.lastNameLabel = new System.Windows.Forms.Label();
-            this.lastNameTextBox = new System.Windows.Forms.TextBox();
-            this.firstNameLabel = new System.Windows.Forms.Label();
-            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.secondaryNameLabel = new System.Windows.Forms.Label();
+            this.secondaryNameTextBox = new System.Windows.Forms.TextBox();
+            this.primaryNameLabel = new System.Windows.Forms.Label();
+            this.primaryNameTextBox = new System.Windows.Forms.TextBox();
             this.transactorListBox = new System.Windows.Forms.ListBox();
             this.transactorsToolStrip = new System.Windows.Forms.ToolStrip();
             this.addTransactorButton = new System.Windows.Forms.ToolStripButton();
@@ -96,6 +97,7 @@
             // 
             // transactorGroupBox
             // 
+            this.transactorGroupBox.Controls.Add(this.errorLabel);
             this.transactorGroupBox.Controls.Add(this.cancelTransactorButton);
             this.transactorGroupBox.Controls.Add(this.saveTransactorButton);
             this.transactorGroupBox.Controls.Add(this.categoryLabel);
@@ -112,18 +114,27 @@
             this.transactorGroupBox.Controls.Add(this.regionLabel);
             this.transactorGroupBox.Controls.Add(this.cityTextBox);
             this.transactorGroupBox.Controls.Add(this.cityLabel);
-            this.transactorGroupBox.Controls.Add(this.addressTextBox);
+            this.transactorGroupBox.Controls.Add(this.streetTextBox);
             this.transactorGroupBox.Controls.Add(this.addressLabel);
-            this.transactorGroupBox.Controls.Add(this.lastNameLabel);
-            this.transactorGroupBox.Controls.Add(this.lastNameTextBox);
-            this.transactorGroupBox.Controls.Add(this.firstNameLabel);
-            this.transactorGroupBox.Controls.Add(this.firstNameTextBox);
+            this.transactorGroupBox.Controls.Add(this.secondaryNameLabel);
+            this.transactorGroupBox.Controls.Add(this.secondaryNameTextBox);
+            this.transactorGroupBox.Controls.Add(this.primaryNameLabel);
+            this.transactorGroupBox.Controls.Add(this.primaryNameTextBox);
             this.transactorGroupBox.Location = new System.Drawing.Point(388, 41);
             this.transactorGroupBox.Name = "transactorGroupBox";
             this.transactorGroupBox.Size = new System.Drawing.Size(467, 382);
             this.transactorGroupBox.TabIndex = 11;
             this.transactorGroupBox.TabStop = false;
             this.transactorGroupBox.Text = "transactorGroupBox";
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Location = new System.Drawing.Point(331, 24);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(54, 13);
+            this.errorLabel.TabIndex = 22;
+            this.errorLabel.Text = "errorLabel";
             // 
             // cancelTransactorButton
             // 
@@ -133,7 +144,7 @@
             this.cancelTransactorButton.TabIndex = 21;
             this.cancelTransactorButton.Text = "Cancel";
             this.cancelTransactorButton.UseVisualStyleBackColor = true;
-            this.cancelTransactorButton.Click += new System.EventHandler(this.cancelTransactorButton_Click);
+            this.cancelTransactorButton.Click += new System.EventHandler(this.CancelTransactorButton_Click);
             // 
             // saveTransactorButton
             // 
@@ -143,7 +154,7 @@
             this.saveTransactorButton.TabIndex = 20;
             this.saveTransactorButton.Text = "Save";
             this.saveTransactorButton.UseVisualStyleBackColor = true;
-            this.saveTransactorButton.Click += new System.EventHandler(this.saveTransactorButton_Click);
+            this.saveTransactorButton.Click += new System.EventHandler(this.SaveTransactorButton_Click);
             // 
             // categoryLabel
             // 
@@ -262,12 +273,12 @@
             this.cityLabel.TabIndex = 6;
             this.cityLabel.Text = "City:";
             // 
-            // addressTextBox
+            // streetTextBox
             // 
-            this.addressTextBox.Location = new System.Drawing.Point(84, 240);
-            this.addressTextBox.Name = "addressTextBox";
-            this.addressTextBox.Size = new System.Drawing.Size(356, 20);
-            this.addressTextBox.TabIndex = 5;
+            this.streetTextBox.Location = new System.Drawing.Point(84, 240);
+            this.streetTextBox.Name = "streetTextBox";
+            this.streetTextBox.Size = new System.Drawing.Size(356, 20);
+            this.streetTextBox.TabIndex = 5;
             // 
             // addressLabel
             // 
@@ -278,37 +289,37 @@
             this.addressLabel.TabIndex = 4;
             this.addressLabel.Text = "Address:";
             // 
-            // lastNameLabel
+            // secondaryNameLabel
             // 
-            this.lastNameLabel.AutoSize = true;
-            this.lastNameLabel.Location = new System.Drawing.Point(18, 139);
-            this.lastNameLabel.Name = "lastNameLabel";
-            this.lastNameLabel.Size = new System.Drawing.Size(61, 13);
-            this.lastNameLabel.TabIndex = 3;
-            this.lastNameLabel.Text = "Last Name:";
+            this.secondaryNameLabel.AutoSize = true;
+            this.secondaryNameLabel.Location = new System.Drawing.Point(18, 139);
+            this.secondaryNameLabel.Name = "secondaryNameLabel";
+            this.secondaryNameLabel.Size = new System.Drawing.Size(61, 13);
+            this.secondaryNameLabel.TabIndex = 3;
+            this.secondaryNameLabel.Text = "Last Name:";
             // 
-            // lastNameTextBox
+            // secondaryNameTextBox
             // 
-            this.lastNameTextBox.Location = new System.Drawing.Point(21, 155);
-            this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(300, 20);
-            this.lastNameTextBox.TabIndex = 2;
+            this.secondaryNameTextBox.Location = new System.Drawing.Point(21, 155);
+            this.secondaryNameTextBox.Name = "secondaryNameTextBox";
+            this.secondaryNameTextBox.Size = new System.Drawing.Size(300, 20);
+            this.secondaryNameTextBox.TabIndex = 2;
             // 
-            // firstNameLabel
+            // primaryNameLabel
             // 
-            this.firstNameLabel.AutoSize = true;
-            this.firstNameLabel.Location = new System.Drawing.Point(18, 86);
-            this.firstNameLabel.Name = "firstNameLabel";
-            this.firstNameLabel.Size = new System.Drawing.Size(60, 13);
-            this.firstNameLabel.TabIndex = 1;
-            this.firstNameLabel.Text = "First Name:";
+            this.primaryNameLabel.AutoSize = true;
+            this.primaryNameLabel.Location = new System.Drawing.Point(18, 86);
+            this.primaryNameLabel.Name = "primaryNameLabel";
+            this.primaryNameLabel.Size = new System.Drawing.Size(60, 13);
+            this.primaryNameLabel.TabIndex = 1;
+            this.primaryNameLabel.Text = "First Name:";
             // 
-            // firstNameTextBox
+            // primaryNameTextBox
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(21, 102);
-            this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(300, 20);
-            this.firstNameTextBox.TabIndex = 0;
+            this.primaryNameTextBox.Location = new System.Drawing.Point(21, 102);
+            this.primaryNameTextBox.Name = "primaryNameTextBox";
+            this.primaryNameTextBox.Size = new System.Drawing.Size(300, 20);
+            this.primaryNameTextBox.TabIndex = 0;
             // 
             // transactorListBox
             // 
@@ -342,7 +353,7 @@
             this.addTransactorButton.Name = "addTransactorButton";
             this.addTransactorButton.Size = new System.Drawing.Size(119, 22);
             this.addTransactorButton.Text = "Add New Transactor";
-            this.addTransactorButton.Click += new System.EventHandler(this.addTransactorButton_Click);
+            this.addTransactorButton.Click += new System.EventHandler(this.AddTransactorButton_Click);
             // 
             // editTransactorButton
             // 
@@ -352,7 +363,7 @@
             this.editTransactorButton.Name = "editTransactorButton";
             this.editTransactorButton.Size = new System.Drawing.Size(90, 22);
             this.editTransactorButton.Text = "Edit Transactor";
-            this.editTransactorButton.Click += new System.EventHandler(this.editTransactorButton_Click);
+            this.editTransactorButton.Click += new System.EventHandler(this.EditTransactorButton_Click);
             // 
             // removeTransactorButton
             // 
@@ -362,7 +373,7 @@
             this.removeTransactorButton.Name = "removeTransactorButton";
             this.removeTransactorButton.Size = new System.Drawing.Size(113, 22);
             this.removeTransactorButton.Text = "Remove Transactor";
-            this.removeTransactorButton.Click += new System.EventHandler(this.removeTransactorButton_Click);
+            this.removeTransactorButton.Click += new System.EventHandler(this.RemoveTransactorButton_Click);
             // 
             // transactionsTab
             // 
@@ -420,12 +431,12 @@
         private System.Windows.Forms.Label regionLabel;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.Label cityLabel;
-        private System.Windows.Forms.TextBox addressTextBox;
+        private System.Windows.Forms.TextBox streetTextBox;
         private System.Windows.Forms.Label addressLabel;
-        private System.Windows.Forms.Label lastNameLabel;
-        private System.Windows.Forms.TextBox lastNameTextBox;
-        private System.Windows.Forms.Label firstNameLabel;
-        private System.Windows.Forms.TextBox firstNameTextBox;
+        private System.Windows.Forms.Label secondaryNameLabel;
+        private System.Windows.Forms.TextBox secondaryNameTextBox;
+        private System.Windows.Forms.Label primaryNameLabel;
+        private System.Windows.Forms.TextBox primaryNameTextBox;
         private System.Windows.Forms.TextBox postalCodeTextBox;
         private System.Windows.Forms.Label postalCodeLabel;
         private System.Windows.Forms.TextBox phoneTextBox3;
@@ -438,6 +449,7 @@
         private System.Windows.Forms.Button cancelTransactorButton;
         private System.Windows.Forms.Button saveTransactorButton;
         private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.Label errorLabel;
 
     }
 }
