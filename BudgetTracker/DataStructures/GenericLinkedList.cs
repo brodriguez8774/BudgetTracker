@@ -110,6 +110,26 @@ namespace BudgetTracker.DataStructures
 
 
         /// <summary>
+        /// Converts class to user-friendly string.
+        /// </summary>
+        /// <returns>User-friendly string of class.</returns>
+        public override string ToString()
+        {
+            string tempString = "";
+            currentNode = firstNode;
+            while (currentNode != null)
+            {
+                if (tempString != "") {
+                    tempString += ", ";
+                }
+                tempString += currentNode.ToString();
+                currentNode = currentNode.Next;
+            }
+            return tempString;
+        }
+
+
+        /// <summary>
         /// Add new node to given index in Linked List.
         /// Returns true if success or false if failed.
         /// </summary>

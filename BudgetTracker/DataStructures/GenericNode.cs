@@ -111,6 +111,16 @@ namespace BudgetTracker.DataStructures
             return 0;
         }
 
+
+        /// <summary>
+        /// Converts class to user-friendly string.
+        /// </summary>
+        /// <returns>User-friendly string of class.</returns>
+        public override string ToString()
+        {
+            return (Data.ToString());
+        }
+
         #endregion Methods
     }
 }

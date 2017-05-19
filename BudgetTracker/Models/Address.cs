@@ -168,6 +168,16 @@ namespace BudgetTracker.Models
             return 0;
         }
 
+
+        /// <summary>
+        /// Converts model to user-friendly string.
+        /// </summary>
+        /// <returns>User-friendly string of model.</returns>
+        public override string ToString()
+        {
+            return (street + ", " + city + ", " + region + ", " + postalCode.ToString());
+        }
+
         #endregion Methods
 
     }

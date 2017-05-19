@@ -189,6 +189,15 @@ namespace BudgetTracker.Models
             return 0;
         }
 
+
+        public override string ToString()
+        {
+            return (dateStart.ToString() + " - " + dateEnd.ToString() + " " + Environment.NewLine +
+                "From: " + transactionList.FirstNode.Data.PaymentFrom + "  To:" + transactionList.FirstNode.Data.PaymentTo + " " + Environment.NewLine +
+                 "Occurances: " + (lastCompletedTransactionIndex + 1));
+        }
+
+
         /// <summary>
         /// Finalizes the next transaction in the list.
         /// </summary>

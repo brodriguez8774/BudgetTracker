@@ -40,6 +40,7 @@ namespace BudgetTracker.DataStructures
             set { id = value; }
         }
 
+
         /// <summary>
         /// Value for comboItem to hold.
         /// </summary>
@@ -69,7 +70,7 @@ namespace BudgetTracker.DataStructures
         /// <returns>ItemValue as string.</returns>
         public override string ToString()
         {
-            return this.itemValue.ToString();
+            return itemValue.ToString();
         }
 
         #endregion Methods

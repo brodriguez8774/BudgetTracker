@@ -207,6 +207,28 @@ namespace BudgetTracker.Models
             return 0;
         }
 
+
+        /// <summary>
+        /// Converts model to user-friendly string.
+        /// </summary>
+        /// <returns>User-friendly string of model.</returns>
+        public override string ToString()
+        {
+            return (category + ": " + firstName + " " + lastName + " " + Environment.NewLine +
+                "Address: " + address.ToString() + " " + Environment.NewLine +
+                "Phone Number: " + phoneNumber.ToString());
+        }
+
+
+        /// <summary>
+        /// Converts model to condensed user-friendly string.
+        /// </summary>
+        /// <returns>Condensed user-friendly string of model.</returns>
+        public string ToStringShort()
+        {
+            return (firstName + " " + lastName);
+        }
+
         #endregion Methods
     }
 }
